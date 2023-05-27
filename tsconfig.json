@@ -19,6 +19,12 @@
     "noUnusedParameters": true,
     "noFallthroughCasesInSwitch": true
   },
-  "include": [".eslintrc.cjs", "src"],
+  "include": [
+    ".eslintrc.cjs",
+    "prettier.config.cjs",
+    "vitest.config.ts",
+    "src",
+    "tests"
+  ],
   "references": [{ "path": "./tsconfig.node.json" }]
 }
