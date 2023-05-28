@@ -1,11 +1,11 @@
-import "./App.css";
+import './App.css'
 
-function App() {
+const App = () => {
   return (
-    <div className="min-h-screen flex justify-center items-center">
-      <h1 className="text-3xl font-bold text-blue-600">Hello world!</h1>
+    <div className="flex items-center md:h-screen overflow-clip h-screen">
+      <p>Hello World</p>
     </div>
-  );
+  )
 }
 
-export default App;
+export default App
