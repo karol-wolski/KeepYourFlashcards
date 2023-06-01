@@ -6,6 +6,7 @@ import './index.css'
 import RegisterPage from './pages/Register'
 import LoginPage from './pages/Login'
 import ForgotPasswordPage from './pages/ForgotPassword'
+import ResetPasswordPage from './pages/ResetPassword'
 
 const router = createBrowserRouter([
   {
@@ -23,6 +24,10 @@ const router = createBrowserRouter([
   {
     path: '/forgot',
     element: <ForgotPasswordPage />,
+  },
+  {
+    path: '/resetPassword',
+    element: <ResetPasswordPage />,
   },
 ])
 
