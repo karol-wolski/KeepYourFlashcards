@@ -7,9 +7,7 @@ let form: RenderResult
 
 describe('Register Form', () => {
   const mockFn = vi.fn()
-  const validUsername = 'username'
   const validEmail = 'a@a.pl'
-  const validPassword = 'Pa$$w0rd'
 
   beforeEach(() => {
     form = render(<ForgotPasswordForm onSubmit={mockFn} />)
@@ -25,17 +23,8 @@ describe('Register Form', () => {
   it('should display an error message for an email less than 3 characters long', async () => {
     const wrongEmail = 'a@a'
 
-    const username = form.getByLabelText(/username/i)
-    fireEvent.change(username, { target: { value: validUsername } })
-
     const email = form.getByLabelText(/email/i)
     fireEvent.change(email, { target: { value: wrongEmail } })
-
-    const password = form.getByLabelText('Password')
-    fireEvent.change(password, { target: { value: validPassword } })
-
-    const confirmPassword = form.getByLabelText(/Confirm Password/i)
-    fireEvent.change(confirmPassword, { target: { value: validPassword } })
 
     const btn = form.getByRole('button', { name: /submit/i })
     await userEvent.click(btn)
@@ -47,17 +36,9 @@ describe('Register Form', () => {
 
   it('should display an error message for the wrong email format', async () => {
     const wrongEmail = 'a@aa'
-    const username = form.getByLabelText(/username/i)
-    fireEvent.change(username, { target: { value: validUsername } })
 
     const email = form.getByLabelText(/email/i)
     fireEvent.change(email, { target: { value: wrongEmail } })
-
-    const password = form.getByLabelText('Password')
-    fireEvent.change(password, { target: { value: validPassword } })
-
-    const confirmPassword = form.getByLabelText(/Confirm Password/i)
-    fireEvent.change(confirmPassword, { target: { value: validPassword } })
 
     const btn = form.getByRole('button', { name: /submit/i })
     await userEvent.click(btn)

@@ -1,9 +1,11 @@
 import './App.css'
+import CardBothSide from './components/CardBothSide/CardBothSide'
 
 const App = () => {
   return (
-    <div className="flex items-center md:h-screen overflow-clip h-screen">
+    <div>
       <p>Hello World</p>
+      <CardBothSide />
     </div>
   )
 }
