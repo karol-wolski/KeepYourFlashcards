@@ -1,10 +1,15 @@
 import Card from '../Card/Card'
 
-const CardBothSide = () => {
+interface Props {
+  question: string
+  answer: string
+}
+
+const CardBothSide = ({ question, answer }: Props) => {
   return (
-    <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-      <Card side="FRONT" text="Hi" />
-      <Card side="BACK" text="Cześć" />
+    <div className="grid grid-cols-1 gap-4">
+      <Card side="QUESTION" text={question} />
+      <Card side="ANSWER" text={answer} />
     </div>
   )
 }

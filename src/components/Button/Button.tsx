@@ -1,10 +1,20 @@
 interface Props {
   type: 'submit' | 'reset' | 'button'
-  text: string
+  children: React.ReactElement | string | JSX.Element
   variant?: 'primary' | 'warn' | 'danger' | 'success'
+  ariaLabel?: string
+  onClick?: () => void
+  disabled?: boolean
 }
 
-const Button = ({ type = 'button', text, variant = 'primary' }: Props) => {
+const Button = ({
+  type = 'button',
+  children,
+  variant = 'primary',
+  ariaLabel,
+  onClick,
+  disabled,
+}: Props) => {
   let variantClass
   if (variant === 'primary')
     variantClass = 'bg-primary hover:bg-primaryHover text-textPrimary'
@@ -18,9 +28,12 @@ const Button = ({ type = 'button', text, variant = 'primary' }: Props) => {
   return (
     <button
       type={type}
-      className={`py-[0.8rem] px-[1.6rem] mt-4 text-[1.6rem] rounded-none ${variantClass}`}
+      className={`py-[0.8rem] px-[1.6rem] text-[1.6rem] rounded-none ${variantClass}`}
+      aria-label={ariaLabel}
+      onClick={onClick}
+      disabled={disabled}
     >
-      {text}
+      {children}
     </button>
   )
 }
