@@ -1,8 +1,21 @@
 /** @type {import('tailwindcss').Config} */
 export default {
-  content: ["./src/**/*.{js,jsx,ts,tsx}"],
+  content: ['./src/**/*.{js,jsx,ts,tsx}'],
   theme: {
-    extend: {},
+    extend: {
+      colors: {
+        primary: '#001D3D',
+        primaryHover: '#003566',
+        secondary: '#FFC300',
+        secondaryHover: '#FFD60A',
+        textPrimary: '#F9F9F9',
+        textSecondary: '#1E1E1E',
+        accent: 'rgba(0,53,102, 0.75)',
+      },
+      fontFamily: {
+        oswald: ['Oswald', 'system-ui'],
+      },
+    },
   },
-  plugins: [require("@tailwindcss/forms")],
-};
+  plugins: [require('@tailwindcss/forms')],
+}
