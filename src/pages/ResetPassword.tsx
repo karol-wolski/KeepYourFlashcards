@@ -6,8 +6,7 @@ const ResetPasswordPage = () => {
   const onSubmit = (data: ResetPassword) => console.log(data)
 
   return (
-    <LayoutWithImage>
-      <h2 className="text-3xl font-bold mb-8">Create new password</h2>
+    <LayoutWithImage title="Create new password">
       <ResetPasswordForm onSubmit={onSubmit} />
     </LayoutWithImage>
   )

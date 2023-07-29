@@ -11,6 +11,10 @@ export default {
         textPrimary: '#F9F9F9',
         textSecondary: '#1E1E1E',
         accent: 'rgba(0,53,102, 0.75)',
+        success: '#00940F',
+        successHover: '#02BD15',
+        danger: '#A90014',
+        dangerHover: '#D00019',
       },
       fontFamily: {
         oswald: ['Oswald', 'system-ui'],

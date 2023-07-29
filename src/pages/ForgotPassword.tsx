@@ -6,8 +6,7 @@ const ForgotPasswordPage = () => {
   const onSubmit = (data: ForgotPassword) => console.log(data)
 
   return (
-    <LayoutWithImage>
-      <h2 className="text-3xl font-bold mb-8">Forgot Password</h2>
+    <LayoutWithImage title="Forgot Password">
       <ForgotPasswordForm onSubmit={onSubmit} />
     </LayoutWithImage>
   )
