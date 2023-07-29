@@ -9,6 +9,7 @@ import ForgotPasswordPage from './pages/ForgotPassword'
 import ResetPasswordPage from './pages/ResetPassword'
 import NotFoundPage from './pages/NotFound'
 import ProfilePage from './pages/Profile'
+import YourSetsPage from './pages/YourSets'
 
 const router = createBrowserRouter([
   {
@@ -34,6 +35,10 @@ const router = createBrowserRouter([
   {
     path: '/profile',
     element: <ProfilePage />,
+  },
+  {
+    path: '/yourSets',
+    element: <YourSetsPage />,
   },
   {
     path: '*',
