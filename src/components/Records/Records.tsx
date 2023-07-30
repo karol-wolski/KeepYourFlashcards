@@ -10,7 +10,7 @@ const Records = ({
   numOfRepetitions,
 }: Props) => {
   return (
-    <div className="bg-primary text-textPrimary p-[1.6rem] flex justify-center gap-[4rem] min-h-[18.8rem] w-full">
+    <div className="bg-primary text-textPrimary p-[1.6rem] flex flex-col sm:flex-row justify-center gap-[4rem] min-h-[18.8rem] w-full">
       <div className="flex justify-center items-center gap-[3.2rem]">
         <i className="fa-solid text-[7rem] fa-calendar text-secondary" />
         <div>
