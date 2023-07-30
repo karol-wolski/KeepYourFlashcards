@@ -5,6 +5,7 @@ interface Props {
   href: string
   iconClass: string
   variant: 'primary' | 'secondary'
+  css?: string
 }
 
 const TileWithIconLink = ({
@@ -12,6 +13,7 @@ const TileWithIconLink = ({
   href,
   iconClass,
   variant = 'primary',
+  css,
 }: Props) => {
   let variantClass
 
@@ -30,7 +32,9 @@ const TileWithIconLink = ({
   return (
     <Link
       to={href}
-      className={`p-[1.6rem] flex flex-col items-center justify-center min-h-[18.8rem] w-full relative ${variantClass?.bg}`}
+      className={`p-[1.6rem] flex flex-col items-center justify-center min-h-[18.8rem] w-full relative ${
+        variantClass?.bg
+      } ${css && css}`}
     >
       <i className={`text-[7rem] ${variantClass?.icon}  ${iconClass}`} />
       <p

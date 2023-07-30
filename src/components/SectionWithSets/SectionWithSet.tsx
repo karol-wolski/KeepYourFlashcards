@@ -32,7 +32,7 @@ const SectionWithSet = ({ title, isVisibleSeeMore = true }: Props) => {
           />
         ))}
         {isVisibleSeeMore && (
-          <TileLink href="/" title="See more" isIconVisible />
+          <TileLink href="/yourSets" title="See more" isIconVisible />
         )}
       </div>
     </Section>
