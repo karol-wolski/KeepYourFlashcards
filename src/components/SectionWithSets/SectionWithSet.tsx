@@ -4,9 +4,10 @@ import TileLink from '../TileLink/TileLink'
 
 interface Props {
   title: string
+  isVisibleSeeMore?: boolean
 }
 
-const SectionWithSet = ({ title }: Props) => {
+const SectionWithSet = ({ title, isVisibleSeeMore = true }: Props) => {
   const array = [
     {
       id: '1',
@@ -30,7 +31,9 @@ const SectionWithSet = ({ title }: Props) => {
             numOfItems={item.items}
           />
         ))}
-        <TileLink href="/" title="See more" isIconVisible />
+        {isVisibleSeeMore && (
+          <TileLink href="/" title="See more" isIconVisible />
+        )}
       </div>
     </Section>
   )

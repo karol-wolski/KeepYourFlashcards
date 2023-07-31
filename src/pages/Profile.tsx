@@ -5,6 +5,7 @@ import SectionWithSet from '../components/SectionWithSets/SectionWithSet'
 import Set from '../components/Sets/Set'
 import TileSlider from '../components/TileSlider/TileSlider'
 import WeeklyActivity from '../components/WeeklyActivity/WeeklyActivity'
+import Layout from '../layouts/Layout'
 
 const ProfilePage = () => {
   const slides = [
@@ -31,7 +32,7 @@ const ProfilePage = () => {
   ]
 
   return (
-    <div className="mx-[1.6rem]">
+    <Layout>
       <div className="grid gap-[1.6rem] sm:grid-cols-2 lg:grid-cols-[4fr_8fr] items-end mb-[3.2rem]">
         <LearningDays numOfDays={30} />
         <Section title="Last set">
@@ -58,7 +59,7 @@ const ProfilePage = () => {
           </Section>
         </div>
       </div>
-    </div>
+    </Layout>
   )
 }
 
