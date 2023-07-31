@@ -6,8 +6,7 @@ const RegisterPage = () => {
   const onSubmit = (data: RegisterType) => console.log(data)
 
   return (
-    <LayoutWithImage>
-      <h2 className="text-3xl font-bold mb-8">Sign up</h2>
+    <LayoutWithImage title="Sign up">
       <RegisterForm onSubmit={onSubmit} />
     </LayoutWithImage>
   )

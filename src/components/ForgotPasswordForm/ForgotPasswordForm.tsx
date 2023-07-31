@@ -1,6 +1,7 @@
 import { Controller, useForm } from 'react-hook-form'
 import LabelInput from '../LabelInput/LabelInput'
 import { ForgotPassword } from '../../ts/types/ForgotPassword'
+import Button from '../Button/Button'
 
 interface Props {
   onSubmit: (data: ForgotPassword) => void
@@ -47,12 +48,7 @@ const ForgotPasswordForm = ({ onSubmit }: Props) => {
           />
         )}
       />
-      <button
-        type="submit"
-        className="bg-blue-700 hover:bg-blue-800 py-2 px-4 mt-4 text-white rounded-lg"
-      >
-        Submit
-      </button>
+      <Button type="submit" text="Submit" variant="primary" />
     </form>
   )
 }
