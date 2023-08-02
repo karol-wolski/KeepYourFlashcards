@@ -11,6 +11,7 @@ import NotFoundPage from './pages/NotFound'
 import ProfilePage from './pages/Profile'
 import YourSetsPage from './pages/YourSets'
 import CoursePage from './pages/Course'
+import StudyPage from './pages/Study'
 
 const router = createBrowserRouter([
   {
@@ -44,6 +45,10 @@ const router = createBrowserRouter([
   {
     path: '/course',
     element: <CoursePage />,
+  },
+  {
+    path: '/study',
+    element: <StudyPage />,
   },
   {
     path: '*',
