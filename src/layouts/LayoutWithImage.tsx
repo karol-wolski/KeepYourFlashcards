@@ -23,7 +23,7 @@ const LayoutWithImage = ({ children, title, isNotFound }: Props) => {
           FlashCards
         </Link>
       </div>
-      <div className="bg-amber-200 h-full w-1/2 max-md:w-full flex flex-col items-center justify-center max-md:overflow-x-scroll">
+      <div className="bg-amber-200 h-full w-1/2 max-md:w-full flex flex-col items-center justify-center">
         <h2 className="text-[3rem] text-primary font-bold mb-8">{title}</h2>
         {children}
       </div>

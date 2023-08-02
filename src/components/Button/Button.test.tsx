@@ -4,7 +4,7 @@ import Button from './Button'
 
 describe('Button', () => {
   it('render component properly', () => {
-    const { getByRole } = render(<Button text="Button" type="button" />)
+    const { getByRole } = render(<Button type="button">Button</Button>)
     const button = getByRole('button')
     expect(button).toBeInTheDocument()
     expect(button).toHaveAttribute('type', 'button')
@@ -12,7 +12,7 @@ describe('Button', () => {
   })
 
   it('render component properly with type = submit', () => {
-    const { getByRole } = render(<Button text="Button" type="submit" />)
+    const { getByRole } = render(<Button type="submit">Button</Button>)
     const button = getByRole('button')
     expect(button).toBeInTheDocument()
     expect(button).toHaveAttribute('type', 'submit')
@@ -20,7 +20,7 @@ describe('Button', () => {
   })
 
   it('render component properly with type = reset', () => {
-    const { getByRole } = render(<Button text="Button" type="reset" />)
+    const { getByRole } = render(<Button type="reset">Button</Button>)
     const button = getByRole('button')
     expect(button).toBeInTheDocument()
     expect(button).toHaveAttribute('type', 'reset')
@@ -29,7 +29,9 @@ describe('Button', () => {
 
   it('render component properly with variant = primary', () => {
     const { getByRole } = render(
-      <Button text="Button" type="button" variant="primary" />
+      <Button type="button" variant="primary">
+        Button
+      </Button>
     )
     const button = getByRole('button')
     expect(button).toBeInTheDocument()
@@ -42,7 +44,9 @@ describe('Button', () => {
 
   it('render component properly with variant = danger', () => {
     const { getByRole } = render(
-      <Button text="Button" type="button" variant="danger" />
+      <Button type="button" variant="danger">
+        Button
+      </Button>
     )
     const button = getByRole('button')
     expect(button).toBeInTheDocument()
@@ -55,7 +59,9 @@ describe('Button', () => {
 
   it('render component properly with variant = success', () => {
     const { getByRole } = render(
-      <Button text="Button" type="button" variant="success" />
+      <Button type="button" variant="success">
+        Button
+      </Button>
     )
     const button = getByRole('button')
     expect(button).toBeInTheDocument()
@@ -68,7 +74,9 @@ describe('Button', () => {
 
   it('render component properly with variant = warn', () => {
     const { getByRole } = render(
-      <Button text="Button" type="button" variant="warn" />
+      <Button type="button" variant="warn">
+        Button
+      </Button>
     )
     const button = getByRole('button')
     expect(button).toBeInTheDocument()

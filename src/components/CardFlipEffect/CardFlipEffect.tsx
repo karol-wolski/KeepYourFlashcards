@@ -1,4 +1,5 @@
 import { useRef, useEffect, KeyboardEvent } from 'react'
+import Card from '../Card/Card'
 
 interface Props {
   front: string
@@ -27,7 +28,7 @@ const CardFlip = ({ front, back }: Props) => {
       onClick={flipCard}
       onKeyDown={onKeyUp}
       role="none"
-      className="relative cursor-pointer card rounded-lg min-h-[20rem] bg-sky-900 text-white flex justify-center items-center"
+      className="relative cursor-pointer card min-h-[25rem]"
       style={{
         transformStyle: 'preserve-3d',
         transformOrigin: 'center right',
@@ -35,17 +36,20 @@ const CardFlip = ({ front, back }: Props) => {
       }}
       tabIndex={-1}
     >
-      <div className="absolute p-8" style={{ backfaceVisibility: 'hidden' }}>
-        {front}
+      <div
+        className="absolute w-[100%]"
+        style={{ backfaceVisibility: 'hidden' }}
+      >
+        <Card side="QUESTION" text={front} />
       </div>
       <div
-        className="absolute p-4"
+        className="absolute w-[100%]"
         style={{
           backfaceVisibility: 'hidden',
           transform: 'rotateY(180deg)',
         }}
       >
-        {back}
+        <Card side="ANSWER" text={back} />
       </div>
     </div>
   )

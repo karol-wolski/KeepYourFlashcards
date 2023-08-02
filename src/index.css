@@ -16,3 +16,11 @@ select:-webkit-autofill:focus {
   transition: background-color 5000s ease-in-out 0s;
   color: white;
 }
+
+.form {
+  @apply flex flex-col gap-[1.6rem] w-full px-[1.6rem];
+}
+
+.form-btn-self-start button {
+  align-self: start;
+}

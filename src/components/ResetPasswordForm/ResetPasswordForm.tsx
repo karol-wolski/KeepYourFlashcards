@@ -21,7 +21,10 @@ const ResetPasswordForm = ({ onSubmit }: Props) => {
   })
 
   return (
-    <form onSubmit={handleSubmit(onSubmit)} className="block w-full px-12">
+    <form
+      onSubmit={handleSubmit(onSubmit)}
+      className="form form-btn-self-start"
+    >
       <Controller
         name="password"
         control={control}
@@ -74,7 +77,9 @@ const ResetPasswordForm = ({ onSubmit }: Props) => {
           />
         )}
       />
-      <Button type="submit" text="Submit" variant="primary" />
+      <Button type="submit" variant="primary">
+        Submit
+      </Button>
     </form>
   )
 }
