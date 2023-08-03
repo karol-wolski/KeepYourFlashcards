@@ -1,9 +1,10 @@
 interface Props {
-  text: string
-  side: 'QUESTION' | 'ANSWER'
+  side?: 'QUESTION' | 'ANSWER'
+  text?: string
+  children?: React.ReactElement | string | JSX.Element
 }
 
-const Card = ({ text, side }: Props) => {
+const Card = ({ text, side, children }: Props) => {
   let style
   if (side === 'QUESTION')
     style = {
@@ -20,6 +21,7 @@ const Card = ({ text, side }: Props) => {
       className={`py-2 px-4 min-h-[25rem] flex justify-between font-oswald ${style?.container}`}
     >
       <div className={`flex flex-col justify-between w-full ${style?.text}`}>
+        {children}
         <p className="h-full w-full flex justify-center items-center text-[1.8rem] leading-[3rem] font-regular px-[1.6rem]">
           {text}
         </p>
