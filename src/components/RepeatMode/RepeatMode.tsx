@@ -1,8 +1,8 @@
-import { useState, useRef, useEffect } from 'react'
+import { useState, useRef } from 'react'
 import Button from '../Button/Button'
 import Card from '../Card/Card'
 
-type CardType = {
+export type CardType = {
   id: string
   question: string
   answer: string
@@ -11,10 +11,16 @@ type CardType = {
 interface Props {
   card: CardType
   collectionName: string
+  isLastCard: boolean
   handleResult: (result: string) => void
 }
 
-const RepeatMode = ({ card, collectionName, handleResult }: Props) => {
+const RepeatMode = ({
+  card,
+  collectionName,
+  isLastCard,
+  handleResult,
+}: Props) => {
   const divRef = useRef<HTMLDivElement>(null)
   const [isBtnVisible, setIsBtnVisible] = useState(true)
   const [isLevelBtnVisible, setIsLevelBtnVisible] = useState(false)
@@ -27,18 +33,20 @@ const RepeatMode = ({ card, collectionName, handleResult }: Props) => {
     setIsLevelBtnVisible(true)
   }
 
-  useEffect(() => {
-    const clear = () => {
-      setIsBtnVisible(true)
-      setIsLevelBtnVisible(false)
-      setAnswer('')
-      if (divRef.current) {
-        divRef.current.contentEditable = 'true'
-        divRef.current.textContent = ''
-      }
+  const clear = () => {
+    setIsBtnVisible(true)
+    setIsLevelBtnVisible(false)
+    setAnswer('')
+    if (divRef.current) {
+      divRef.current.contentEditable = 'true'
+      divRef.current.textContent = ''
     }
+  }
+
+  const result = (status: string) => {
     clear()
-  }, [card])
+    handleResult(status)
+  }
 
   return (
     <div className="flex flex-col gap-[1.6rem] [&>*:last-child]:self-center">
@@ -46,6 +54,9 @@ const RepeatMode = ({ card, collectionName, handleResult }: Props) => {
         <h2 className="font-bold text-[1.6rem]">
           {collectionName} - Repeat mode
         </h2>
+        {isLastCard && (
+          <p className="text-[1.6rem] text-danger">Last question</p>
+        )}
       </div>
       <Card side="QUESTION" text={card.question} />
       <Card side="ANSWER" text={answer}>
@@ -64,17 +75,13 @@ const RepeatMode = ({ card, collectionName, handleResult }: Props) => {
       )}
       {isLevelBtnVisible && (
         <div className="flex gap-[1.6rem]">
-          <Button
-            type="button"
-            variant="danger"
-            onClick={() => handleResult('poor')}
-          >
+          <Button type="button" variant="danger" onClick={() => result('poor')}>
             Poor
           </Button>
           <Button
             type="button"
             variant="success"
-            onClick={() => handleResult('great')}
+            onClick={() => result('great')}
           >
             Great
           </Button>
