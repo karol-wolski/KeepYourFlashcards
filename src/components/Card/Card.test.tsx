@@ -12,12 +12,12 @@ describe('Single Set', () => {
   it('render component properly with front side', () => {
     const el = render(<Card side="QUESTION" text={mockData.front} />)
     expect(el.getByText('This is the question.')).toBeInTheDocument()
-    expect(el.getByText(/Question/i)).toBeInTheDocument()
+    expect(el.getByText(/^Question$/i)).toBeInTheDocument()
   })
 
   it('render component properly with back side', () => {
     const el = render(<Card side="ANSWER" text={mockData.back} />)
     expect(el.getByText('This is an answer.')).toBeInTheDocument()
-    expect(el.getByText(/Answer/i)).toBeInTheDocument()
+    expect(el.getByText(/^Answer$/i)).toBeInTheDocument()
   })
 })
