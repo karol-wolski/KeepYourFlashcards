@@ -20,4 +20,11 @@ describe('Single Set', () => {
     expect(el.getByText('This is an answer.')).toBeInTheDocument()
     expect(el.getByText(/^Answer$/i)).toBeInTheDocument()
   })
+
+  it('render component should not have visible text with side ', () => {
+    const el = render(
+      <Card side="ANSWER" text={mockData.back} isSideTextVisible={false} />
+    )
+    expect(el.queryByText('ANSWER')).not.toBeInTheDocument()
+  })
 })

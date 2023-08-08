@@ -2,9 +2,10 @@ interface Props {
   side?: 'QUESTION' | 'ANSWER'
   text?: string
   children?: React.ReactElement | string | JSX.Element
+  isSideTextVisible?: boolean
 }
 
-const Card = ({ text, side, children }: Props) => {
+const Card = ({ text, side, children, isSideTextVisible = true }: Props) => {
   let style
   if (side === 'QUESTION')
     style = {
@@ -25,7 +26,7 @@ const Card = ({ text, side, children }: Props) => {
         <p className="h-full w-full flex justify-center items-center text-[1.8rem] leading-[3rem] font-regular px-[1.6rem]">
           {text}
         </p>
-        {side && (
+        {isSideTextVisible && (
           <p className="text-[1.2rem] font-light mb-[1.6rem] ml-[1.6rem]">
             {side}
           </p>

@@ -9,8 +9,8 @@ const data = {
   collectionName: 'English phrases',
   card: {
     id: '2',
-    question: 'This is second question',
-    answer: 'This is answer',
+    question: 'What it the most popular sport in Poland?',
+    answer: 'Football',
   },
 }
 
@@ -23,6 +23,7 @@ describe('Repeat modw component', () => {
         collectionName={data.collectionName}
         card={data.card}
         handleResult={mockFn}
+        isLastCard={false}
       />
     )
   })
