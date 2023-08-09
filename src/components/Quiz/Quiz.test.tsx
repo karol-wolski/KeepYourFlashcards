@@ -35,7 +35,9 @@ describe('Label Input Radio component', () => {
   }
 
   beforeEach(() => {
-    quizComponent = render(<Quiz callback={data.cb} questions={data.quiz} />)
+    quizComponent = render(
+      <Quiz handleResult={data.cb} questions={data.quiz} />
+    )
   })
 
   afterEach(() => {
