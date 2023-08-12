@@ -13,6 +13,7 @@ import YourSetsPage from './pages/YourSets'
 import CoursePage from './pages/Course'
 import StudyPage from './pages/Study'
 import RepeatPage from './pages/Repeat'
+import TestPage from './pages/Test'
 
 const router = createBrowserRouter([
   {
@@ -54,6 +55,10 @@ const router = createBrowserRouter([
   {
     path: '/repeat',
     element: <RepeatPage />,
+  },
+  {
+    path: '/test',
+    element: <TestPage />,
   },
   {
     path: '*',
