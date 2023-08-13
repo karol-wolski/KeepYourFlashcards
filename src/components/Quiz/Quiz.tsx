@@ -1,15 +1,15 @@
 import { FieldValues, SubmitHandler, useForm } from 'react-hook-form'
 import Button from '../Button/Button'
 import LabelInputRadio from '../LabelInputRadio/LabelInputRadio'
-import { IncorrectQuestions, Question } from '../../ts/types/Quiz'
+import { IncorrectQuestion, Question } from '../../ts/types/Quiz'
 import isEmptyObject from '../../utils/isEmptyObject'
 
 interface Props {
   questions: Question[]
-  callback: (counter: number, questions: IncorrectQuestions) => void
+  handleResult: (counter: number, questions: IncorrectQuestion[]) => void
 }
 
-const Quiz = ({ questions, callback }: Props) => {
+const Quiz = ({ questions, handleResult }: Props) => {
   const {
     register,
     handleSubmit,
@@ -18,7 +18,7 @@ const Quiz = ({ questions, callback }: Props) => {
 
   const onSubmit: SubmitHandler<FieldValues> = (data) => {
     let counter = 0
-    const array: IncorrectQuestions = []
+    const array: IncorrectQuestion[] = []
 
     Object.entries(data).forEach(([key, value]) => {
       const question = questions.find((item) => item.id === key)
@@ -39,7 +39,7 @@ const Quiz = ({ questions, callback }: Props) => {
       }
     })
 
-    callback(counter, array)
+    handleResult(counter, array)
   }
 
   return (
