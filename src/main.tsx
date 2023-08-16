@@ -14,6 +14,7 @@ import CoursePage from './pages/Course'
 import StudyPage from './pages/Study'
 import RepeatPage from './pages/Repeat'
 import TestPage from './pages/Test'
+import MatchingPage from './pages/Matching'
 
 const router = createBrowserRouter([
   {
@@ -59,6 +60,10 @@ const router = createBrowserRouter([
   {
     path: '/test',
     element: <TestPage />,
+  },
+  {
+    path: '/matching',
+    element: <MatchingPage />,
   },
   {
     path: '*',
