@@ -1,8 +1,9 @@
 import { useState } from 'react'
-import RepeatMode, { CardType } from '../components/RepeatMode/RepeatMode'
+import RepeatMode from '../components/RepeatMode/RepeatMode'
 import Layout from '../layouts/Layout'
 import randomNumber from '../utils/randomNumber'
 import Button from '../components/Button/Button'
+import { Card } from '../ts/types/Card'
 
 const RepeatPage = () => {
   const response = [
@@ -18,8 +19,8 @@ const RepeatPage = () => {
     },
   ]
 
-  const [cards, setCards] = useState<CardType[]>(response)
-  const [currentCard, setCurrentCard] = useState<CardType>(cards[0])
+  const [cards, setCards] = useState<Card[]>(response)
+  const [currentCard, setCurrentCard] = useState<Card>(cards[0])
 
   const nextQuestion = () => {
     const randomNum = randomNumber(0, cards.length)

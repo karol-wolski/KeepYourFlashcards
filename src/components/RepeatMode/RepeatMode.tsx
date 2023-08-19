@@ -1,12 +1,7 @@
 import { useState, useRef } from 'react'
 import Button from '../Button/Button'
 import Card from '../Card/Card'
-
-export type CardType = {
-  id: string
-  question: string
-  answer: string
-}
+import { Card as CardType } from '../../ts/types/Card'
 
 interface Props {
   card: CardType
