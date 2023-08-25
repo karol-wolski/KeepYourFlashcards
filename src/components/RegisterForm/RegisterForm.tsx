@@ -2,12 +2,9 @@ import { Controller, useForm } from 'react-hook-form'
 import LabelInput from '../LabelInput/LabelInput'
 import { Register } from '../../ts/types/Register'
 import Button from '../Button/Button'
+import { Form } from '../../ts/interfaces/Form'
 
-interface Props {
-  onSubmit: (data: Register) => void
-}
-
-const RegisterForm = ({ onSubmit }: Props) => {
+const RegisterForm = ({ onSubmit, isLoading, error }: Form<Register>) => {
   const {
     control,
     handleSubmit,
@@ -132,8 +129,9 @@ const RegisterForm = ({ onSubmit }: Props) => {
         )}
       />
       <Button type="submit" variant="primary">
-        Submit
+        {isLoading ? 'Submiting...' : 'Submit'}
       </Button>
+      {error && <p>{error}</p>}
     </form>
   )
 }

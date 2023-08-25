@@ -12,7 +12,7 @@ describe('Register Form', () => {
   const validPassword = 'Pa$$w0rd'
 
   beforeEach(() => {
-    form = render(<RegisterForm onSubmit={mockFn} />)
+    form = render(<RegisterForm onSubmit={mockFn} isLoading={false} error="" />)
   })
 
   it('render form properly', () => {
