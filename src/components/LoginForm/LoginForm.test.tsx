@@ -5,13 +5,13 @@ import LoginForm from './LoginForm'
 
 let form: RenderResult
 
-describe('Register Form', () => {
+describe('Login Form', () => {
   const mockFn = vi.fn()
   const validEmail = 'a@a.pl'
   const validPassword = 'Pa$$w0rd'
 
   beforeEach(() => {
-    form = render(<LoginForm onSubmit={mockFn} />)
+    form = render(<LoginForm onSubmit={mockFn} isLoading={false} error="" />)
   })
 
   it('render form properly', () => {

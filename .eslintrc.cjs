@@ -8,6 +8,7 @@ module.exports = {
     'plugin:@typescript-eslint/recommended',
     'plugin:react-hooks/recommended',
     'plugin:prettier/recommended',
+    'plugin:@tanstack/eslint-plugin-query/recommended',
   ],
   parser: '@typescript-eslint/parser',
   parserOptions: {
@@ -15,7 +16,7 @@ module.exports = {
     sourceType: 'module',
     project: './tsconfig.json',
   },
-  plugins: ['react-refresh', 'prettier'],
+  plugins: ['react-refresh', 'prettier', '@tanstack/query'],
   rules: {
     'react-refresh/only-export-components': 'warn',
     'react/react-in-jsx-scope': 0,
@@ -27,5 +28,7 @@ module.exports = {
     'import/no-extraneous-dependencies': 0,
     'react/require-default-props': 0,
     'react/button-has-type': 0,
+    '@tanstack/query/exhaustive-deps': 'error',
+    '@tanstack/query/prefer-query-object-syntax': 'error',
   },
 }
