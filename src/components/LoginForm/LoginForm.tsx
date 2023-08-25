@@ -5,9 +5,11 @@ import Button from '../Button/Button'
 
 interface Props {
   onSubmit: (data: Login) => void
+  isLoading: boolean
+  error: string
 }
 
-const LoginForm = ({ onSubmit }: Props) => {
+const LoginForm = ({ onSubmit, isLoading, error }: Props) => {
   const {
     control,
     handleSubmit,
@@ -77,8 +79,9 @@ const LoginForm = ({ onSubmit }: Props) => {
         )}
       />
       <Button type="submit" variant="primary">
-        Submit
+        {isLoading ? 'Submiting...' : 'Submit'}
       </Button>
+      {error && <p>{error}</p>}
     </form>
   )
 }
