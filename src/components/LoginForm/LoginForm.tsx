@@ -2,14 +2,9 @@ import { Controller, useForm } from 'react-hook-form'
 import LabelInput from '../LabelInput/LabelInput'
 import { Login } from '../../ts/types/Login'
 import Button from '../Button/Button'
+import { Form } from '../../ts/interfaces/Form'
 
-interface Props {
-  onSubmit: (data: Login) => void
-  isLoading: boolean
-  error: string
-}
-
-const LoginForm = ({ onSubmit, isLoading, error }: Props) => {
+const LoginForm = ({ onSubmit, isLoading, error }: Form<Login>) => {
   const {
     control,
     handleSubmit,
