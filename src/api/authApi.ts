@@ -1,6 +1,7 @@
 import axios from 'axios'
 import { Login } from '../ts/types/Login'
 import { Register } from '../ts/types/Register'
+import { ForgotPassword } from '../ts/types/ForgotPassword'
 
 export const authApi = axios.create({
   baseURL: import.meta.env.VITE_API_URL,
@@ -17,5 +18,10 @@ export const loginUserFn = async (user: Login) => {
 
 export const signUpUserFn = async (user: Register) => {
   const response = await authApi.post('auth/register', user)
+  return response.data
+}
+
+export const forgotUserPasswordFn = async (password: ForgotPassword) => {
+  const response = await authApi.post('user/forgotPassword', password)
   return response.data
 }
