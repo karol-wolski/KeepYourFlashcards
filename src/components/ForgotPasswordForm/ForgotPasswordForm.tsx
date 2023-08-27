@@ -2,12 +2,13 @@ import { Controller, useForm } from 'react-hook-form'
 import LabelInput from '../LabelInput/LabelInput'
 import { ForgotPassword } from '../../ts/types/ForgotPassword'
 import Button from '../Button/Button'
+import { Form } from '../../ts/interfaces/Form'
 
-interface Props {
-  onSubmit: (data: ForgotPassword) => void
-}
-
-const ForgotPasswordForm = ({ onSubmit }: Props) => {
+const ForgotPasswordForm = ({
+  onSubmit,
+  isLoading,
+  error,
+}: Form<ForgotPassword>) => {
   const {
     control,
     handleSubmit,
@@ -52,8 +53,9 @@ const ForgotPasswordForm = ({ onSubmit }: Props) => {
         )}
       />
       <Button type="submit" variant="primary">
-        Submit
+        {isLoading ? 'Submiting...' : 'Submit'}
       </Button>
+      {error && <p>{error}</p>}
     </form>
   )
 }

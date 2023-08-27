@@ -10,7 +10,9 @@ describe('Register Form', () => {
   const validEmail = 'a@a.pl'
 
   beforeEach(() => {
-    form = render(<ForgotPasswordForm onSubmit={mockFn} />)
+    form = render(
+      <ForgotPasswordForm onSubmit={mockFn} isLoading={false} error="" />
+    )
   })
 
   it('render form properly', () => {
