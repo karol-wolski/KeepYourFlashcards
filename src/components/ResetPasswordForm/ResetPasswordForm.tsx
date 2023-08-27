@@ -2,12 +2,13 @@ import { Controller, useForm } from 'react-hook-form'
 import LabelInput from '../LabelInput/LabelInput'
 import { ResetPassword } from '../../ts/types/ResetPassword'
 import Button from '../Button/Button'
+import { Form } from '../../ts/interfaces/Form'
 
-interface Props {
-  onSubmit: (data: ResetPassword) => void
-}
-
-const ResetPasswordForm = ({ onSubmit }: Props) => {
+const ResetPasswordForm = ({
+  onSubmit,
+  isLoading,
+  error,
+}: Form<ResetPassword>) => {
   const {
     control,
     handleSubmit,
@@ -78,8 +79,9 @@ const ResetPasswordForm = ({ onSubmit }: Props) => {
         )}
       />
       <Button type="submit" variant="primary">
-        Submit
+        {isLoading ? 'Submiting...' : 'Submit'}
       </Button>
+      {error && <p>{error}</p>}
     </form>
   )
 }
