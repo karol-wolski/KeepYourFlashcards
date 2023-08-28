@@ -2,6 +2,7 @@ import { createBrowserRouter } from 'react-router-dom'
 import App from '../../App'
 import ProtectedRoute from './ProtectedRoute'
 import {
+  AddSetPage,
   CoursePage,
   ForgotPasswordPage,
   LoginPage,
@@ -56,6 +57,10 @@ const router = createBrowserRouter([
           {
             path: '/matching',
             element: <MatchingPage />,
+          },
+          {
+            path: 'create-set',
+            element: <AddSetPage />,
           },
         ],
       },

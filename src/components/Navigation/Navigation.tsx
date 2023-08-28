@@ -44,6 +44,9 @@ const Navigation = () => {
               <i className="fa-solid fa-fire text-secondary" /> <span>30</span>
             </li>
             <li>
+              <Link to="/create-set">Add set</Link>
+            </li>
+            <li>
               <Link to="/settings">Profile</Link>
             </li>
           </ul>
