@@ -10,7 +10,9 @@ describe('Register Form', () => {
   const validPassword = 'Pa$$w0rd'
 
   beforeEach(() => {
-    form = render(<ResetPasswordForm onSubmit={mockFn} />)
+    form = render(
+      <ResetPasswordForm onSubmit={mockFn} isLoading={false} error="" />
+    )
   })
 
   it('render form properly', () => {
