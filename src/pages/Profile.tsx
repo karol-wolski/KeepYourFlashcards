@@ -1,3 +1,5 @@
+import { useQuery } from '@tanstack/react-query'
+import { GetSets } from '../api/cardsApi'
 import LearningDays from '../components/LearningDays/LearningDays'
 import Records from '../components/Records/Records'
 import Section from '../components/Section/Section'
@@ -6,8 +8,14 @@ import Set from '../components/Sets/Set'
 import TileSlider from '../components/TileSlider/TileSlider'
 import WeeklyActivity from '../components/WeeklyActivity/WeeklyActivity'
 import Layout from '../layouts/Layout'
+import { Sets } from '../ts/types/Sets'
 
 const ProfilePage = () => {
+  const { data = [] } = useQuery<Sets[]>({
+    queryKey: ['sets', { limit: 2 }],
+    queryFn: () => GetSets(2),
+  })
+
   const slides = [
     {
       id: '1',
@@ -40,7 +48,7 @@ const ProfilePage = () => {
         </Section>
       </div>
 
-      <SectionWithSet title="Your set" />
+      <SectionWithSet title="Your set" array={data} />
 
       <div className="grid gap-[1.6rem] sm:grid-cols-2 lg:grid-cols-[3fr_2fr_7fr]">
         <Section title="Activity">

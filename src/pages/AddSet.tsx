@@ -1,20 +1,27 @@
 import { useState } from 'react'
-import { useMutation } from '@tanstack/react-query'
+import { useMutation, useQueryClient } from '@tanstack/react-query'
 import { useNavigate } from 'react-router-dom'
 import Layout from '../layouts/Layout'
 import AddSet from '../components/AddSet/AddSet'
 import { CreteSetFn } from '../api/cardsApi'
 import { CreateSet } from '../ts/interfaces/Set'
+import { Sets } from '../ts/types/Sets'
 
 const AddSetPage = () => {
   const [errorMsg, setErrorMsg] = useState<string>('')
   const navigate = useNavigate()
+  const queryClient = useQueryClient()
   const { mutate, isLoading } = useMutation({
     mutationFn: CreteSetFn,
-    onSuccess: (data) => {
-      if (data) {
-        navigate('/yourSets')
-      }
+    onSuccess: ({ data }) => {
+      queryClient.setQueryData<Sets[]>(['sets'], (oldSets) => {
+        if (oldSets) {
+          return [...oldSets, data]
+        }
+        return undefined
+      })
+      queryClient.invalidateQueries({ queryKey: ['sets'] })
+      return navigate('/yourSets')
     },
     onError: ({ response }) => {
       setErrorMsg(response.data.message)

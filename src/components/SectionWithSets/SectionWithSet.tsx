@@ -1,3 +1,4 @@
+import { Sets } from '../../ts/types/Sets'
 import Section from '../Section/Section'
 import Set from '../Sets/Set'
 import TileLink from '../TileLink/TileLink'
@@ -5,30 +6,19 @@ import TileLink from '../TileLink/TileLink'
 interface Props {
   title: string
   isVisibleSeeMore?: boolean
+  array: Sets[]
 }
 
-const SectionWithSet = ({ title, isVisibleSeeMore = true }: Props) => {
-  const array = [
-    {
-      id: '1',
-      title: 'English phrases',
-      items: 39,
-    },
-    {
-      id: '2',
-      title: 'Cooking words',
-      items: 15,
-    },
-  ]
+const SectionWithSet = ({ title, array, isVisibleSeeMore = true }: Props) => {
   return (
     <Section title={title}>
       <div className="grid gap-[1.6rem] sm:grid-cols-3 mb-[3.2rem]">
-        {array.map((item) => (
+        {array.map(({ _id: id, name, numOfCards }) => (
           <Set
-            key={item.id}
-            href={`/${item.id}`}
-            title={item.title}
-            numOfItems={item.items}
+            key={id}
+            href={`/course/${id}`}
+            title={name}
+            numOfItems={numOfCards}
           />
         ))}
         {isVisibleSeeMore && (

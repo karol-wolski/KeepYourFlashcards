@@ -15,3 +15,9 @@ export const CreteSetFn = async (set: CreateSet) => {
   const response = await cardsApi.post('flashcards', set)
   return response.data
 }
+
+export const GetSets = async (limit?: number) => {
+  const limitQuery = limit ? `?limit=${limit}` : ''
+  const response = await cardsApi.get(`flashcards/me${limitQuery}`)
+  return response.data
+}
