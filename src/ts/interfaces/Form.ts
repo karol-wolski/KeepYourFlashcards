@@ -3,3 +3,8 @@ export interface Form<T> {
   isLoading: boolean
   error: string
 }
+
+export interface SetForm<T> extends Form<T> {
+  additionalBtnFn: () => void
+  additionalBtnName: string
+}

@@ -1,29 +1,42 @@
 import { Fragment } from 'react'
-import { FieldValues, useFieldArray, useForm } from 'react-hook-form'
+import { useFieldArray, useForm } from 'react-hook-form'
 import Button from '../Button/Button'
 import LabelInput from '../LabelInput/LabelInput'
 import { Answer } from '../../ts/types/Quiz'
+import { CreateSet } from '../../ts/interfaces/Set'
+import { SetForm } from '../../ts/interfaces/Form'
 
-interface NewSet extends FieldValues {
-  title: string
-  flashcards: {
-    question: string
-    answers: {
-      text: string
-      isCorrect: boolean
-    }[]
-  }[]
-}
-
-const AddSet = () => {
-  const { register, control, handleSubmit } = useForm<NewSet>()
-  const { fields, append } = useFieldArray<NewSet>({
-    control,
-    name: 'flashcards',
+const AddSet = ({
+  onSubmit,
+  additionalBtnFn,
+  additionalBtnName,
+  isLoading,
+  error,
+}: SetForm<CreateSet>) => {
+  const { register, control, handleSubmit } = useForm<CreateSet>({
+    defaultValues: {
+      name: '',
+      cards: [
+        {
+          question: '',
+          answers: [
+            {
+              text: '',
+              isCorrect: true,
+            },
+          ],
+        },
+      ],
+    },
   })
 
-  const formatSubmit = (data: NewSet) => {
-    const answers = data.flashcards.map((el) =>
+  const { fields, append } = useFieldArray<CreateSet>({
+    control,
+    name: 'cards',
+  })
+
+  const formatSubmit = (data: CreateSet) => {
+    const answers = data.cards.map((el) =>
       el.answers.map((answer: Answer, index: number) => {
         return {
           ...answer,
@@ -32,13 +45,13 @@ const AddSet = () => {
       })
     )
 
-    const flashcards = data.flashcards.map((el, index: number) => ({
+    const cards = data.cards.map((el, index: number) => ({
       ...el,
       answers: answers[index],
     }))
 
-    const set = { ...data, flashcards }
-    return set
+    const set = { ...data, cards }
+    return onSubmit(set)
   }
 
   return (
@@ -48,7 +61,7 @@ const AddSet = () => {
         labelText="Title"
         id="title"
         hasError={undefined}
-        fieldRef={register('title')}
+        fieldRef={register('name')}
       />
       <div className=" [&>*:nth-child(2)]:mb-[1.6rem]">
         <h3 className="text-[1.6rem] mb-[1.8rem] font-bold">Cards</h3>
@@ -60,7 +73,7 @@ const AddSet = () => {
                 labelText="Question"
                 id="question"
                 hasError={undefined}
-                fieldRef={register(`flashcards[${index}].question`)}
+                fieldRef={register(`cards[${index}].question`)}
               />
               <div className="grid grid-cols-2 gap-[1.6rem] mt-[1.6rem] mb-[3.2rem]">
                 <LabelInput
@@ -68,28 +81,28 @@ const AddSet = () => {
                   labelText="Correct answer"
                   id="correct-answer"
                   hasError={undefined}
-                  fieldRef={register(`flashcards[${index}].answers[0].text`)}
+                  fieldRef={register(`cards[${index}].answers[0].text`)}
                 />
                 <LabelInput
                   inputType="text"
                   labelText="False answer"
                   id="false-answer"
                   hasError={undefined}
-                  fieldRef={register(`flashcards[${index}].answers[1].text`)}
+                  fieldRef={register(`cards[${index}].answers[1].text`)}
                 />
                 <LabelInput
                   inputType="text"
                   labelText="False answer"
                   id="false-answer-2"
                   hasError={undefined}
-                  fieldRef={register(`flashcards[${index}].answers[2].text`)}
+                  fieldRef={register(`cards[${index}].answers[2].text`)}
                 />
                 <LabelInput
                   inputType="text"
                   labelText="False answer"
                   id="false-answer-3"
                   hasError={undefined}
-                  fieldRef={register(`flashcards[${index}].answers[3].text`)}
+                  fieldRef={register(`cards[${index}].answers[3].text`)}
                 />
               </div>
             </Fragment>
@@ -101,13 +114,14 @@ const AddSet = () => {
           Add card
         </Button>
         <div className="flex gap-[1.6rem]">
-          <Button type="submit" variant="success">
-            Save
+          <Button type="button" variant="danger" onClick={additionalBtnFn}>
+            {additionalBtnName}
           </Button>
-          <Button type="button" variant="danger">
-            Remove
+          <Button type="submit" variant="success">
+            {isLoading ? 'Saving...' : 'Save'}
           </Button>
         </div>
+        {error && <p>{error}</p>}
       </div>
     </form>
   )
