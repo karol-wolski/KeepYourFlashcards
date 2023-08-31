@@ -1,5 +1,5 @@
 import { Fragment } from 'react'
-import { useFieldArray, useForm } from 'react-hook-form'
+import { Controller, useFieldArray, useForm } from 'react-hook-form'
 import Button from '../Button/Button'
 import LabelInput from '../LabelInput/LabelInput'
 import { Answer } from '../../ts/types/Quiz'
@@ -13,7 +13,11 @@ const AddSet = ({
   isLoading,
   error,
 }: SetForm<CreateSet>) => {
-  const { register, control, handleSubmit } = useForm<CreateSet>({
+  const {
+    control,
+    handleSubmit,
+    formState: { errors },
+  } = useForm<CreateSet>({
     defaultValues: {
       name: '',
       cards: [
@@ -56,53 +60,123 @@ const AddSet = ({
 
   return (
     <form className="grid gap-[3.2rem]" onSubmit={handleSubmit(formatSubmit)}>
-      <LabelInput
-        inputType="text"
-        labelText="Title"
-        id="title"
-        hasError={undefined}
-        fieldRef={register('name')}
+      <Controller
+        name="name"
+        control={control}
+        rules={{
+          required: true && 'Please enter the title of your set',
+          minLength: {
+            value: 4,
+            message: 'Name should have at least 4 chars.',
+          },
+        }}
+        render={({ field }) => (
+          <LabelInput
+            inputType="text"
+            labelText="Title"
+            id="title"
+            hasError={errors.name}
+            fieldRef={field}
+          />
+        )}
       />
       <div className=" [&>*:nth-child(2)]:mb-[1.6rem]">
         <h3 className="text-[1.6rem] mb-[1.8rem] font-bold">Cards</h3>
         {fields.map(({ id }, index) => {
           return (
             <Fragment key={id}>
-              <LabelInput
-                inputType="text"
-                labelText="Question"
-                id="question"
-                hasError={undefined}
-                fieldRef={register(`cards[${index}].question`)}
+              <Controller
+                name={`cards[${index}].question`}
+                control={control}
+                rules={{
+                  required: true && 'Please enter the question',
+                  minLength: {
+                    value: 2,
+                    message: 'Question should have at least 2 chars.',
+                  },
+                }}
+                render={({ field }) => (
+                  <LabelInput
+                    inputType="text"
+                    labelText="Question"
+                    id="question"
+                    hasError={errors.cards && errors?.cards[index]?.question}
+                    fieldRef={field}
+                  />
+                )}
               />
               <div className="grid grid-cols-2 gap-[1.6rem] mt-[1.6rem] mb-[3.2rem]">
-                <LabelInput
-                  inputType="text"
-                  labelText="Correct answer"
-                  id="correct-answer"
-                  hasError={undefined}
-                  fieldRef={register(`cards[${index}].answers[0].text`)}
+                <Controller
+                  name={`cards[${index}].answers[0].text`}
+                  control={control}
+                  rules={{
+                    required: true && 'Please enter the correct answer',
+                  }}
+                  render={({ field }) => (
+                    <LabelInput
+                      inputType="text"
+                      labelText="Correct answer"
+                      id="correct-answer"
+                      hasError={
+                        errors.cards && errors?.cards[index]?.answers?.[0]?.text
+                      }
+                      fieldRef={field}
+                    />
+                  )}
                 />
-                <LabelInput
-                  inputType="text"
-                  labelText="False answer"
-                  id="false-answer"
-                  hasError={undefined}
-                  fieldRef={register(`cards[${index}].answers[1].text`)}
+                <Controller
+                  name={`cards[${index}].answers[1].text`}
+                  control={control}
+                  rules={{
+                    required: true && 'Please enter the first false answer',
+                  }}
+                  render={({ field }) => (
+                    <LabelInput
+                      inputType="text"
+                      labelText="False answer"
+                      id="false-answer"
+                      hasError={
+                        errors.cards && errors?.cards[index]?.answers?.[1]?.text
+                      }
+                      fieldRef={field}
+                    />
+                  )}
                 />
-                <LabelInput
-                  inputType="text"
-                  labelText="False answer"
-                  id="false-answer-2"
-                  hasError={undefined}
-                  fieldRef={register(`cards[${index}].answers[2].text`)}
+                <Controller
+                  name={`cards[${index}].answers[2].text`}
+                  control={control}
+                  rules={{
+                    required: true && 'Please enter the second false answer',
+                  }}
+                  render={({ field }) => (
+                    <LabelInput
+                      inputType="text"
+                      labelText="False answer"
+                      id="false-answer-2"
+                      hasError={
+                        errors.cards && errors?.cards[index]?.answers?.[2]?.text
+                      }
+                      fieldRef={field}
+                    />
+                  )}
                 />
-                <LabelInput
-                  inputType="text"
-                  labelText="False answer"
-                  id="false-answer-3"
-                  hasError={undefined}
-                  fieldRef={register(`cards[${index}].answers[3].text`)}
+                <Controller
+                  name={`cards[${index}].answers[3].text`}
+                  control={control}
+                  rules={{
+                    required: true && 'Please enter the third false answer',
+                  }}
+                  render={({ field }) => (
+                    <LabelInput
+                      inputType="text"
+                      labelText="False answer"
+                      id="false-answer-3"
+                      hasError={
+                        errors.cards && errors?.cards[index]?.answers?.[3]?.text
+                      }
+                      fieldRef={field}
+                    />
+                  )}
                 />
               </div>
             </Fragment>
