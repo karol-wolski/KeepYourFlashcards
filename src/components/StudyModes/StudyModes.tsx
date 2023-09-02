@@ -8,9 +8,7 @@ interface Props {
 const StudyModes = ({ href, css }: Props) => {
   return (
     <div
-      className={`grid gap-[1.6rem] grid-cols-2 sm:grid-cols-3 max-w-[61rem] mx-auto ${
-        css && css
-      }`}
+      className={`grid gap-[1.6rem] grid-cols-2 sm:grid-cols-3 ${css && css}`}
     >
       <TileWithIconLink
         href={`${href}/study`}

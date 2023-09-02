@@ -21,3 +21,8 @@ export const GetSets = async (limit?: number) => {
   const response = await cardsApi.get(`flashcards/me${limitQuery}`)
   return response.data
 }
+
+export const GetSetName = async (id?: string) => {
+  const response = await cardsApi.get(`flashcards/course/${id}`)
+  return response.data
+}
