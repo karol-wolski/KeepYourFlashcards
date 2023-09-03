@@ -26,3 +26,8 @@ export const GetSetName = async (id?: string) => {
   const response = await cardsApi.get(`flashcards/course/${id}`)
   return response.data
 }
+
+export const GetStudy = async (id: string) => {
+  const response = await cardsApi.get(`flashcards/course/${id}/study`)
+  return response.data
+}
