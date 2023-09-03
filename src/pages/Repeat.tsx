@@ -1,33 +1,45 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
+import { Navigate, useParams } from 'react-router-dom'
+import { useQuery } from '@tanstack/react-query'
 import RepeatMode from '../components/RepeatMode/RepeatMode'
 import Layout from '../layouts/Layout'
 import randomNumber from '../utils/randomNumber'
 import Button from '../components/Button/Button'
 import { Card } from '../ts/types/Card'
+import { StudyCollection } from '../ts/types/StudyCollection'
+import { GetStudy } from '../api/cardsApi'
 
 const RepeatPage = () => {
-  const response = [
-    {
-      id: '1',
-      question: 'What is the capital of Poland?',
-      answer: 'Warsaw',
-    },
-    {
-      id: '2',
-      question: 'What it the most popular sport in Poland?',
-      answer: 'Football',
-    },
-  ]
+  const { id } = useParams()
+  const {
+    data: collection,
+    isError,
+    isLoading,
+  } = useQuery<StudyCollection>({
+    queryKey: ['study', { id }],
+    queryFn: () => GetStudy(id || ''),
+  })
 
-  const [cards, setCards] = useState<Card[]>(response)
-  const [currentCard, setCurrentCard] = useState<Card>(cards[0])
+  const [cards, setCards] = useState<Card[]>(collection?.flashcards || [])
+  const [currentCard, setCurrentCard] = useState<Card>()
 
+  useEffect(() => {
+    setCurrentCard(cards[0])
+  }, [cards])
+
+  if (!id || isError) {
+    return <Navigate to="/" />
+  }
+
+  if (isLoading) {
+    return <p>Loading...</p>
+  }
   const nextQuestion = () => {
     const randomNum = randomNumber(0, cards.length)
     setCurrentCard(cards[randomNum])
   }
   const handleResult = (prop: string) => {
-    if (prop === 'great') {
+    if (prop === 'great' && currentCard) {
       const filterArray = cards.filter((card) => card.id !== currentCard.id)
       setCards(filterArray)
     }
@@ -37,9 +49,9 @@ const RepeatPage = () => {
   return (
     <Layout>
       <div className="max-w-[60rem] m-auto">
-        {cards.length !== 0 ? (
+        {cards.length !== 0 && currentCard ? (
           <RepeatMode
-            collectionName="English phrases"
+            collectionName={collection.name}
             card={currentCard}
             handleResult={handleResult}
             isLastCard={cards.length === 1}
@@ -50,7 +62,7 @@ const RepeatPage = () => {
             <Button
               type="button"
               variant="primary"
-              onClick={() => setCards(response)}
+              onClick={() => setCards(collection.flashcards)}
             >
               Start again your reps
             </Button>
