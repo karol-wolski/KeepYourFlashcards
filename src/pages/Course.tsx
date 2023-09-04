@@ -22,7 +22,7 @@ const CoursePage = () => {
     <Layout>
       <div className="max-w-[61rem] mx-auto">
         <h2 className="text-[1.6rem] mb-[1.6rem] font-bold">{name}</h2>
-        <StudyModes href="" css="mb-[5rem]" />
+        <StudyModes href={`/course/${id}`} css="mb-[5rem]" />
       </div>
       <SectionWithSet title="Your sets" array={sets} />
     </Layout>
