@@ -55,7 +55,7 @@ const router = createBrowserRouter([
             element: <TestPage />,
           },
           {
-            path: '/matching',
+            path: '/course/:id/matching',
             element: <MatchingPage />,
           },
           {
