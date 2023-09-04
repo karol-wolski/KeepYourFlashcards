@@ -11,7 +11,7 @@ describe('Label Input Radio component', () => {
   const data = {
     quiz: [
       {
-        id: '001',
+        _id: '001',
         question: 'What is the capital of Poland?',
         answers: [
           { text: 'Berlin', isCorrect: false },
@@ -21,7 +21,7 @@ describe('Label Input Radio component', () => {
         ],
       },
       {
-        id: '002',
+        _id: '002',
         question: 'What it the most popular sport in Poland?',
         answers: [
           { text: 'Ski jumping', isCorrect: false },

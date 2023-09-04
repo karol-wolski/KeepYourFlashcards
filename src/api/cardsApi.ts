@@ -31,3 +31,8 @@ export const GetStudy = async (id: string) => {
   const response = await cardsApi.get(`flashcards/course/${id}/study`)
   return response.data
 }
+
+export const GetTest = async (id: string) => {
+  const response = await cardsApi.get(`flashcards/course/${id}/test`)
+  return response.data
+}

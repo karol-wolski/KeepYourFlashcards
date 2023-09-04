@@ -30,5 +30,6 @@ module.exports = {
     'react/button-has-type': 0,
     '@tanstack/query/exhaustive-deps': 'error',
     '@tanstack/query/prefer-query-object-syntax': 'error',
+    'no-underscore-dangle': ['error', { allow: ['_id'] }],
   },
 }

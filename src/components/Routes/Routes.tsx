@@ -51,7 +51,7 @@ const router = createBrowserRouter([
             element: <RepeatPage />,
           },
           {
-            path: '/test',
+            path: '/course/:id/test',
             element: <TestPage />,
           },
           {
