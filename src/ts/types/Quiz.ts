@@ -11,7 +11,7 @@ export type Answer = {
 }
 
 export type Question = {
-  id: string
+  _id: string
   question: string
   answers: Answer[]
 }
