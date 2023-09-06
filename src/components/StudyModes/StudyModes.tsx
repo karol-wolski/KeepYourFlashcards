@@ -29,7 +29,7 @@ const StudyModes = ({ href, css }: Props) => {
         variant="primary"
       />
       <TileWithIconLink
-        href={`${href}/match`}
+        href={`${href}/matching`}
         title="Matching"
         iconClass="fa-solid fa-clone"
         variant="primary"
