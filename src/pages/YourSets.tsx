@@ -1,15 +1,9 @@
-import { useQuery } from '@tanstack/react-query'
 import SectionWithSet from '../components/SectionWithSets/SectionWithSet'
 import Layout from '../layouts/Layout'
-import { GetSets } from '../api/cardsApi'
-import { Sets } from '../ts/types/Sets'
+import useGetSets from '../hooks/useGetSets'
 
 const YourSetsPage = () => {
-  const { data = [], isLoading } = useQuery<Sets[]>({
-    queryKey: ['sets'],
-    queryFn: () => GetSets(),
-    enabled: true,
-  })
+  const { data = [], isLoading } = useGetSets()
 
   if (isLoading) {
     return <p className="text-[8rem]">Loading...</p>

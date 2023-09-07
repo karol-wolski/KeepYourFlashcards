@@ -1,20 +1,11 @@
-import { useQuery } from '@tanstack/react-query'
 import { Navigate, useParams } from 'react-router-dom'
-import { GetStudy } from '../api/cardsApi'
 import MatchingMode from '../components/MatchingMode/MatchingMode'
 import Layout from '../layouts/Layout'
-import { StudyCollection } from '../ts/types/StudyCollection'
+import useGetStudyCollection from '../hooks/useGetStudyCollection'
 
 const MatchingPage = () => {
-  const { id } = useParams()
-  const {
-    data: collection,
-    isError,
-    isLoading,
-  } = useQuery<StudyCollection>({
-    queryKey: ['study', { id }],
-    queryFn: () => GetStudy(id || ''),
-  })
+  const { id = '' } = useParams()
+  const { data: collection, isError, isLoading } = useGetStudyCollection(id)
 
   if (!id || isError) {
     return <Navigate to="/" />

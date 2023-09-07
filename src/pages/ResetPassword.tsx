@@ -1,26 +1,23 @@
 import { useState } from 'react'
-import { useMutation } from '@tanstack/react-query'
 import { Navigate } from 'react-router-dom'
-import { resetPasswordFn } from '../api/authApi'
 import ResetPasswordForm from '../components/ResetPasswordForm/ResetPasswordForm'
 import LayoutWithImage from '../layouts/LayoutWithImage'
 import { ResetPassword } from '../ts/types/ResetPassword'
 import useQuery from '../hooks/useQuery'
+import useResetPassword from '../hooks/useResetPassword'
 
 const ResetPasswordPage = () => {
   const [successMsg, setSuccessMsg] = useState<string>('')
   const [errorMsg, setErrorMsg] = useState<string>('')
   const resetId = useQuery().get('resetId') || ''
-  const { mutate, isLoading, isSuccess } = useMutation({
-    mutationFn: resetPasswordFn,
-    onSuccess: (data) => {
-      setSuccessMsg(data.message)
-      setErrorMsg('')
-    },
-    onError: ({ response }) => {
-      setErrorMsg(response.data.message)
-    },
-  })
+
+  const setSuccess = (msg: string) => setSuccessMsg(msg)
+  const setError = (msg: string) => setErrorMsg(msg)
+
+  const { mutate, isLoading, isSuccess } = useResetPassword(
+    setError,
+    setSuccess
+  )
 
   const onSubmit = (data: ResetPassword) =>
     mutate({

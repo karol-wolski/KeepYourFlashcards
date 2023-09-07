@@ -1,20 +1,11 @@
-import { useQuery } from '@tanstack/react-query'
 import { Navigate, useParams } from 'react-router-dom'
-import { GetTest } from '../api/cardsApi'
 import TestMode from '../components/TestMode/TestMode'
-import { QuizCollection } from '../ts/types/QuizCollection'
 import Layout from '../layouts/Layout'
+import useGetTestCollection from '../hooks/useGetTestCollection'
 
 const TestPage = () => {
-  const { id } = useParams()
-  const {
-    data: collection,
-    isError,
-    isLoading,
-  } = useQuery<QuizCollection>({
-    queryKey: ['study', { id }],
-    queryFn: () => GetTest(id || ''),
-  })
+  const { id = '' } = useParams()
+  const { data: collection, isError, isLoading } = useGetTestCollection(id)
 
   if (!id || isError) {
     return <Navigate to="/" />
