@@ -1,23 +1,15 @@
 import { useState } from 'react'
-import { useMutation } from '@tanstack/react-query'
 import RegisterForm from '../components/RegisterForm/RegisterForm'
 import LayoutWithImage from '../layouts/LayoutWithImage'
 import { Register as RegisterType } from '../ts/types/Register'
-import { signUpUserFn } from '../api/authApi'
+import useRegister from '../hooks/useRegister'
 
 const RegisterPage = () => {
   const [successMsg, setSuccessMsg] = useState<string>('')
   const [errorMsg, setErrorMsg] = useState<string>('')
-  const { mutate, isLoading, isSuccess } = useMutation({
-    mutationFn: signUpUserFn,
-    onSuccess: (data) => {
-      setSuccessMsg(data.message)
-      setErrorMsg('')
-    },
-    onError: ({ response }) => {
-      setErrorMsg(response.data.message)
-    },
-  })
+  const setSuccess = (msg: string) => setSuccessMsg(msg)
+  const setError = (msg: string) => setErrorMsg(msg)
+  const { mutate, isLoading, isSuccess } = useRegister(setError, setSuccess)
 
   const onSubmit = (data: RegisterType) =>
     mutate({ ...data, page: 'FLASHCARD' })

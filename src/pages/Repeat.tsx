@@ -1,24 +1,15 @@
 import { useEffect, useState } from 'react'
 import { Navigate, useParams } from 'react-router-dom'
-import { useQuery } from '@tanstack/react-query'
 import RepeatMode from '../components/RepeatMode/RepeatMode'
 import Layout from '../layouts/Layout'
 import randomNumber from '../utils/randomNumber'
 import Button from '../components/Button/Button'
 import { Card } from '../ts/types/Card'
-import { StudyCollection } from '../ts/types/StudyCollection'
-import { GetStudy } from '../api/cardsApi'
+import useGetStudyCollection from '../hooks/useGetStudyCollection'
 
 const RepeatPage = () => {
-  const { id } = useParams()
-  const {
-    data: collection,
-    isError,
-    isLoading,
-  } = useQuery<StudyCollection>({
-    queryKey: ['study', { id }],
-    queryFn: () => GetStudy(id || ''),
-  })
+  const { id = '' } = useParams()
+  const { data: collection, isError, isLoading } = useGetStudyCollection(id)
 
   const [cards, setCards] = useState<Card[]>(collection?.flashcards || [])
   const [currentCard, setCurrentCard] = useState<Card>()
