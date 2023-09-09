@@ -5,12 +5,13 @@ import SectionWithSet from '../components/SectionWithSets/SectionWithSet'
 import Set from '../components/Sets/Set'
 import TileSlider from '../components/TileSlider/TileSlider'
 import WeeklyActivity from '../components/WeeklyActivity/WeeklyActivity'
+import useGetLastActiveSet from '../hooks/useGetLastActiveSet'
 import useGetSetsWithLimit from '../hooks/useGetSetsWithLimit'
 import Layout from '../layouts/Layout'
 
 const ProfilePage = () => {
-  const { data = [] } = useGetSetsWithLimit(2)
-
+  const { data: sets = [] } = useGetSetsWithLimit(2)
+  const { data: lastSet } = useGetLastActiveSet()
   const slides = [
     {
       id: '1',
@@ -38,12 +39,19 @@ const ProfilePage = () => {
     <Layout>
       <div className="grid gap-[1.6rem] sm:grid-cols-2 lg:grid-cols-[4fr_8fr] items-end mb-[3.2rem]">
         <LearningDays numOfDays={30} />
-        <Section title="Last set">
-          <Set href="/" title="English phrases" numOfItems={47} isActiveLinks />
-        </Section>
+        {lastSet && (
+          <Section title="Last set">
+            <Set
+              href={`/course/${lastSet._id}`}
+              title={lastSet?.name}
+              numOfItems={lastSet?.numOfCards}
+              isActiveLinks
+            />
+          </Section>
+        )}
       </div>
 
-      <SectionWithSet title="Your set" array={data} />
+      <SectionWithSet title="Your set" array={sets} />
 
       <div className="grid gap-[1.6rem] sm:grid-cols-2 lg:grid-cols-[3fr_2fr_7fr]">
         <Section title="Activity">

@@ -32,17 +32,17 @@ const Set = ({ title, numOfItems, href, isActiveLinks }: Props) => {
           <div className="ml-[1.6rem] flex flex-col justify-center">
             <LinkWithBgAndIcon
               title="Study"
-              href="/study"
+              href={`${href}/study`}
               iconClass="fa-solid fa-book-open"
             />
             <LinkWithBgAndIcon
               title="Repeat"
-              href="/repeat"
+              href={`${href}/repeat`}
               iconClass="fa-solid fa-chalkboard"
             />
             <LinkWithBgAndIcon
               title="Test"
-              href="/test"
+              href={`${href}/test`}
               iconClass="fa-solid fa-file"
               lastItem
             />
