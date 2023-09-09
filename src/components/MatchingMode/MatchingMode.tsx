@@ -5,10 +5,17 @@ import { Card } from '../../ts/types/Card'
 
 interface Props {
   cards: Card[]
+  refetch: () => void
 }
 
-const MatchingMode = ({ cards }: Props) => {
+const MatchingMode = ({ cards, refetch }: Props) => {
   const [isGameEnd, setIsGameEnd] = useState(false)
+
+  const playAgain = () => {
+    setIsGameEnd(false)
+    refetch()
+  }
+
   return (
     <div>
       {!isGameEnd ? (
@@ -16,11 +23,7 @@ const MatchingMode = ({ cards }: Props) => {
       ) : (
         <div className="h-[30rem] flex flex-col gap-[1.6rem] justify-center items-center border-[2px] border-primary">
           <p className="text-[1.6rem]">You have done all the repetitions</p>
-          <Button
-            type="button"
-            variant="primary"
-            onClick={() => setIsGameEnd(false)}
-          >
+          <Button type="button" variant="primary" onClick={() => playAgain()}>
             Play again
           </Button>
         </div>
