@@ -23,7 +23,7 @@ export const GetSets = async (limit?: number) => {
 }
 
 export const GetSetName = async (id?: string) => {
-  const response = await cardsApi.get(`flashcards/course/${id}`)
+  const response = await cardsApi.get(`flashcards/course/${id}/setName`)
   return response.data
 }
 
@@ -34,5 +34,10 @@ export const GetStudy = async (id: string) => {
 
 export const GetTest = async (id: string) => {
   const response = await cardsApi.get(`flashcards/course/${id}/test`)
+  return response.data
+}
+
+export const GetMatching = async (id: string) => {
+  const response = await cardsApi.get(`flashcards/course/${id}/match`)
   return response.data
 }
