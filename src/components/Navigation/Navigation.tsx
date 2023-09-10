@@ -1,8 +1,10 @@
 import { useState } from 'react'
 import { Link } from 'react-router-dom'
 import Button from '../Button/Button'
+import useGetNumLearningDaysInRow from '../../hooks/useGetNumLearningDaysInRow'
 
 const Navigation = () => {
+  const { data: numDaysInRow } = useGetNumLearningDaysInRow()
   const [isOpenMobileMenu, setIsOpenMobileMenu] = useState(false)
 
   const toggleMenu = () => setIsOpenMobileMenu((prevState) => !prevState)
@@ -41,7 +43,8 @@ const Navigation = () => {
 
           <ul className="flex gap-[1.6rem] items-center [&>li>*]:text-[1.6rem] [&>*>a:hover]:text-secondary mx-[1.6rem]  max-md:flex-col">
             <li className="hidden md:block">
-              <i className="fa-solid fa-fire text-secondary" /> <span>30</span>
+              <i className="fa-solid fa-fire text-secondary" />
+              <span className="ml-[0.5rem]">{numDaysInRow}</span>
             </li>
             <li>
               <Link to="/create-set">Add set</Link>

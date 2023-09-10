@@ -6,12 +6,15 @@ import Set from '../components/Sets/Set'
 import TileSlider from '../components/TileSlider/TileSlider'
 import WeeklyActivity from '../components/WeeklyActivity/WeeklyActivity'
 import useGetLastActiveSet from '../hooks/useGetLastActiveSet'
+import useGetNumLearningDaysInRow from '../hooks/useGetNumLearningDaysInRow'
 import useGetSetsWithLimit from '../hooks/useGetSetsWithLimit'
 import Layout from '../layouts/Layout'
 
 const ProfilePage = () => {
   const { data: sets = [] } = useGetSetsWithLimit(2)
   const { data: lastSet } = useGetLastActiveSet()
+  const { data: numDaysInRow } = useGetNumLearningDaysInRow()
+
   const slides = [
     {
       id: '1',
@@ -38,7 +41,7 @@ const ProfilePage = () => {
   return (
     <Layout>
       <div className="grid gap-[1.6rem] sm:grid-cols-2 lg:grid-cols-[4fr_8fr] items-end mb-[3.2rem]">
-        <LearningDays numOfDays={30} />
+        {numDaysInRow && <LearningDays numOfDays={numDaysInRow} />}
         {lastSet && (
           <Section title="Last set">
             <Set
