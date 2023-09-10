@@ -14,3 +14,8 @@ export const GetNumberDaysInRow = async () => {
   const response = await cardsApi.get('flashcardsStats/daysInRow')
   return response.data
 }
+
+export const GetWeeklyActivity = async () => {
+  const response = await cardsApi.get('flashcardsStats/weeklyActivity')
+  return response.data
+}
