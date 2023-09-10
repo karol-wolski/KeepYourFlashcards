@@ -41,3 +41,8 @@ export const GetMatching = async (id: string) => {
   const response = await cardsApi.get(`flashcards/course/${id}/match`)
   return response.data
 }
+
+export const GetLastActiveSet = async () => {
+  const response = await cardsApi.get(`flashcards/course/last`)
+  return response.data
+}
