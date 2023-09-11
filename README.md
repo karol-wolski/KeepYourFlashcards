@@ -21,6 +21,16 @@ Project status: _in progress_
 
 ## Technologies and libraries
 
+- React
+- React-Router-Dom
+- Tailwind
+- TypeScript
+- React-hook-form
+- React-query
+- Axios
+- Fontawesome
+- React-Testing-Library
+
 ## Setup
 
 To run this project, install it locally using npm:
@@ -39,6 +49,19 @@ npm run build
 ```
 
 ## Features
+
+- Log in
+- Sign up
+- Remind password
+- Create / Update / Delete set of flashcards
+- Create / Update / Delete flashcards in a selected set
+- List of sets
+- Display last active set
+- Study mode
+- Repetition mode
+- Matching mode
+- Test mode
+- Weekly activity calendar
 
 ## Screenshots
 
