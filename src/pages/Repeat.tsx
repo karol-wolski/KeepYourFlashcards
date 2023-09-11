@@ -11,8 +11,12 @@ const RepeatPage = () => {
   const { id = '' } = useParams()
   const { data: collection, isError, isLoading } = useGetStudyCollection(id)
 
-  const [cards, setCards] = useState<Card[]>(collection?.flashcards || [])
+  const [cards, setCards] = useState<Card[]>([])
   const [currentCard, setCurrentCard] = useState<Card>()
+
+  useEffect(() => {
+    if (collection) setCards(collection.flashcards)
+  }, [collection])
 
   useEffect(() => {
     setCurrentCard(cards[0])

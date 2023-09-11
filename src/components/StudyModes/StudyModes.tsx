@@ -35,7 +35,7 @@ const StudyModes = ({ href, css }: Props) => {
         variant="primary"
       />
       <TileWithIconLink
-        href={`${href}/manage`}
+        href={`${href}/manage-set`}
         title="Manage"
         iconClass="fa-solid fa-gear"
         variant="secondary"

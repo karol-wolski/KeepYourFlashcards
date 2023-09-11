@@ -8,12 +8,14 @@ import WeeklyActivity from '../components/WeeklyActivity/WeeklyActivity'
 import useGetLastActiveSet from '../hooks/useGetLastActiveSet'
 import useGetNumLearningDaysInRow from '../hooks/useGetNumLearningDaysInRow'
 import useGetSetsWithLimit from '../hooks/useGetSetsWithLimit'
+import useGetWeeklyActivity from '../hooks/useGetWeeklyActivity'
 import Layout from '../layouts/Layout'
 
 const ProfilePage = () => {
   const { data: sets = [] } = useGetSetsWithLimit(2)
   const { data: lastSet } = useGetLastActiveSet()
   const { data: numDaysInRow } = useGetNumLearningDaysInRow()
+  const { data: weeklyActivity } = useGetWeeklyActivity()
 
   const slides = [
     {
@@ -28,15 +30,15 @@ const ProfilePage = () => {
     },
   ]
 
-  const weeklyActivity = [
-    { day: 23, dayName: 'Sun', status: 1 },
-    { day: 24, dayName: 'Mon', status: 2 },
-    { day: 25, dayName: 'Tue', status: 0 },
-    { day: 26, dayName: 'Wed', status: 0 },
-    { day: 27, dayName: 'Thu', status: 0 },
-    { day: 28, dayName: 'Fri', status: 0 },
-    { day: 29, dayName: 'Sat', status: 0 },
-  ]
+  // const weeklyActivity = [
+  //   { day: 23, dayName: 'Sun', status: 1 },
+  //   { day: 24, dayName: 'Mon', status: 2 },
+  //   { day: 25, dayName: 'Tue', status: 0 },
+  //   { day: 26, dayName: 'Wed', status: 0 },
+  //   { day: 27, dayName: 'Thu', status: 0 },
+  //   { day: 28, dayName: 'Fri', status: 0 },
+  //   { day: 29, dayName: 'Sat', status: 0 },
+  // ]
 
   return (
     <Layout>
@@ -58,7 +60,11 @@ const ProfilePage = () => {
 
       <div className="grid gap-[1.6rem] sm:grid-cols-2 lg:grid-cols-[3fr_2fr_7fr]">
         <Section title="Activity">
-          <WeeklyActivity activityArray={weeklyActivity} />
+          {weeklyActivity ? (
+            <WeeklyActivity activityArray={weeklyActivity} />
+          ) : (
+            <p className="text-[1.6rem]">We cannot load your statistics</p>
+          )}
         </Section>
         <Section title="Your Weekly Goals">
           <TileSlider slides={slides} />
