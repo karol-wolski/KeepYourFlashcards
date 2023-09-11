@@ -1,5 +1,5 @@
 import axios from 'axios'
-import { CreateSet } from '../ts/interfaces/Set'
+import { Set } from '../ts/interfaces/Set'
 import { getFromLocalStorage } from '../utils/localStorage'
 
 export const cardsApi = axios.create({
@@ -11,14 +11,24 @@ export const cardsApi = axios.create({
   },
 })
 
-export const CreteSetFn = async (set: CreateSet) => {
+export const CreteSetFn = async (set: Set) => {
   const response = await cardsApi.post('flashcards', set)
+  return response.data
+}
+
+export const UpdateSetFn = async (set: Set) => {
+  const response = await cardsApi.patch(`flashcards/${set._id}`, set)
   return response.data
 }
 
 export const GetSets = async (limit?: number) => {
   const limitQuery = limit ? `?limit=${limit}` : ''
   const response = await cardsApi.get(`flashcards/me${limitQuery}`)
+  return response.data
+}
+
+export const GetSet = async (id: string) => {
+  const response = await cardsApi.get(`flashcards/${id}`)
   return response.data
 }
 
@@ -44,5 +54,10 @@ export const GetMatching = async (id: string) => {
 
 export const GetLastActiveSet = async () => {
   const response = await cardsApi.get(`flashcards/course/last`)
+  return response.data
+}
+
+export const DeleteSetFn = async (id: string) => {
+  const response = await cardsApi.delete(`flashcards/${id}`)
   return response.data
 }

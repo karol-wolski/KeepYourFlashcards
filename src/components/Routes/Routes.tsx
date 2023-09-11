@@ -18,6 +18,7 @@ import {
 } from './LazyImportPages'
 import AuthProvider from '../../context/AuthContext'
 import PublicRoute from './PublicRoute'
+import ManageSetPage from '../../pages/ManageSet'
 
 const router = createBrowserRouter([
   {
@@ -61,6 +62,10 @@ const router = createBrowserRouter([
           {
             path: 'create-set',
             element: <AddSetPage />,
+          },
+          {
+            path: '/course/:id/manage-set',
+            element: <ManageSetPage />,
           },
         ],
       },

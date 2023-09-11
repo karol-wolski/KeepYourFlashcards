@@ -1,6 +1,7 @@
 import { FieldValues } from 'react-hook-form'
 
-export interface CreateSet extends FieldValues {
+export interface Set extends FieldValues {
+  _id: string
   name: string
   cards: {
     question: string

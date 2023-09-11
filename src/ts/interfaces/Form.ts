@@ -8,3 +8,8 @@ export interface SetForm<T> extends Form<T> {
   additionalBtnFn: () => void
   additionalBtnName: string
 }
+
+export interface SetEditForm<T> extends SetForm<T> {
+  defaultData?: T
+  onDelete: () => void
+}
