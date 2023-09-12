@@ -77,6 +77,26 @@ npm run build
 
 ## Screenshots
 ### Mobile
+<div>
+  <img width="220" alt="image" src="https://github.com/karol-wolski/KeepYourFlashcards/assets/15778908/4e6a9497-6c8c-4415-98b3-2144780b0c63">
+  <img width="220" alt="image" src="https://github.com/karol-wolski/KeepYourFlashcards/assets/15778908/8df6686a-a927-4c24-8381-09d65c8a8b9e">
+  <img width="220" alt="image" src="https://github.com/karol-wolski/KeepYourFlashcards/assets/15778908/70f7eceb-39fe-4ad5-8ace-cbae46ac340f">
+  <img width="220" alt="image" src="https://github.com/karol-wolski/KeepYourFlashcards/assets/15778908/40cf64c4-f9d5-41e8-9af2-2b396245339a">
+  <img width="220" alt="image" src="https://github.com/karol-wolski/KeepYourFlashcards/assets/15778908/3e5dad05-db89-4ddc-94fc-d6c41b923d68">
+  <img width="220" alt="image" src="https://github.com/karol-wolski/KeepYourFlashcards/assets/15778908/6e13b947-49a1-492d-af50-b14ebc31520b">
+  <img width="220" alt="image" src="https://github.com/karol-wolski/KeepYourFlashcards/assets/15778908/6075afc3-c840-4646-a8e9-b7084b5a3de5">
+  <img width="220" alt="image" src="https://github.com/karol-wolski/KeepYourFlashcards/assets/15778908/25b07ac8-51c8-461e-af32-4d9672082227">
+  <img width="220" alt="image" src="https://github.com/karol-wolski/KeepYourFlashcards/assets/15778908/04d8b128-a17b-40ab-95e3-08ca2eea85fa">
+  <img width="220" alt="image" src="https://github.com/karol-wolski/KeepYourFlashcards/assets/15778908/58dae522-f867-4457-ae7f-1a49987f4360">
+  <img width="220" alt="image" src="https://github.com/karol-wolski/KeepYourFlashcards/assets/15778908/1e38e012-653e-4da0-9ab5-4d30f7df827d">
+  <img width="220" alt="image" src="https://github.com/karol-wolski/KeepYourFlashcards/assets/15778908/f50f4565-39dd-4245-a48a-39420a7011c2">
+  <img width="220" alt="image" src="https://github.com/karol-wolski/KeepYourFlashcards/assets/15778908/3b54f153-5606-4718-8975-9bef9474de35">
+  <img width="220" alt="image" src="https://github.com/karol-wolski/KeepYourFlashcards/assets/15778908/590bd3b0-35ad-4180-9429-e2861796ab7d">
+  <img width="220" alt="image" src="https://github.com/karol-wolski/KeepYourFlashcards/assets/15778908/7d3b44de-7a48-4a54-a0ef-f4e8d6b51a3b">
+  <img width="220" alt="image" src="https://github.com/karol-wolski/KeepYourFlashcards/assets/15778908/ab49b9c9-bc4f-4105-9a0c-f60792facb44">
+  <img width="220" alt="image" src="https://github.com/karol-wolski/KeepYourFlashcards/assets/15778908/50038176-01c8-4e96-85c9-576ccbfd7c8e">
+</div>
+
 
 ### Desktop
 <img width="960" alt="image" src="https://github.com/karol-wolski/KeepYourFlashcards/assets/15778908/6e819ea1-8c60-4b45-82f3-2c7c5869bf57">
