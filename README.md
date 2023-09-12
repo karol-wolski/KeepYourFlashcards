@@ -17,8 +17,8 @@
 <b>Keep Your Flashcards</b> is an application that gives you the opportunity to expand your knowledge using virtual flashcards. <br />
 The application provides four learning modes: learn, repeat, test, match <br /> <br />
 <b>Study mode</b> - allows you to view the list of cards. In this mode you can see both sides of the card or just one side and turn the card over to see the back. <br />
-<b>Repeat mode</b> - in this mode you only see the question and you have to answer it. Next, you can compare your answer with the correct answer.
-<b>Test Mode</b> - in this mode you are given 10 random questions, selected from a list of all your cards in the set. Each question has 4 answer but only one is correct.
+<b>Repeat mode</b> - in this mode you only see the question and you have to answer it. Next, you can compare your answer with the correct answer. <br />
+<b>Test Mode</b> - in this mode you are given 10 random questions, selected from a list of all your cards in the set. Each question has 4 answer but only one is correct. <br />
 <b>Matching mode</b> - in this mode you have randomly placed questions and answers. Your task is to properly match the question with the answer.
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
