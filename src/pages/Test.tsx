@@ -2,6 +2,7 @@ import { Navigate, useParams } from 'react-router-dom'
 import TestMode from '../components/TestMode/TestMode'
 import Layout from '../layouts/Layout'
 import useGetTestCollection from '../hooks/useGetTestCollection'
+import LoaderFullScreen from '../components/LoaderFullScreen/LoaderFullScreen'
 
 const TestPage = () => {
   const { id = '' } = useParams()
@@ -12,7 +13,7 @@ const TestPage = () => {
   }
 
   if (isLoading) {
-    return <p>Loading...</p>
+    return <LoaderFullScreen />
   }
 
   return (
