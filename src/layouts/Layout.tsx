@@ -1,10 +1,10 @@
 import Navigation from '../components/Navigation/Navigation'
 
 type Props = {
-  children: string | JSX.Element | JSX.Element[]
+  children: string | JSX.Element | JSX.Element[] | React.ReactNode
 }
 
-const Layout = ({ children }: Props) => {
+const Layout: React.FC<Props> = ({ children }: Props) => {
   return (
     <>
       <Navigation />

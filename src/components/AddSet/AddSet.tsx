@@ -4,7 +4,7 @@ import Button from '../Button/Button'
 import LabelInput from '../LabelInput/LabelInput'
 import { Answer } from '../../ts/types/Quiz'
 import { Set } from '../../ts/interfaces/Set'
-import { SetForm } from '../../ts/interfaces/Form'
+import { Form } from '../../ts/interfaces/Form'
 
 const AddSet = ({
   onSubmit,
@@ -12,7 +12,7 @@ const AddSet = ({
   additionalBtnName,
   isLoading,
   error,
-}: SetForm<Set>) => {
+}: Form<Set>) => {
   const {
     control,
     handleSubmit,
@@ -188,9 +188,11 @@ const AddSet = ({
           Add card
         </Button>
         <div className="flex gap-[1.6rem]">
-          <Button type="button" variant="danger" onClick={additionalBtnFn}>
-            {additionalBtnName}
-          </Button>
+          {additionalBtnName && (
+            <Button type="button" variant="danger" onClick={additionalBtnFn}>
+              {additionalBtnName}
+            </Button>
+          )}
           <Button type="submit" variant="success">
             {isLoading ? 'Saving...' : 'Save'}
           </Button>
