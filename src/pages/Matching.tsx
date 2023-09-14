@@ -2,6 +2,7 @@ import { Navigate, useParams } from 'react-router-dom'
 import MatchingMode from '../components/MatchingMode/MatchingMode'
 import Layout from '../layouts/Layout'
 import useGetMatchingCollection from '../hooks/useGetMatchingCollection'
+import LoaderFullScreen from '../components/LoaderFullScreen/LoaderFullScreen'
 
 const MatchingPage = () => {
   const { id = '' } = useParams()
@@ -17,7 +18,7 @@ const MatchingPage = () => {
   }
 
   if (isLoading) {
-    return <p>Loading...</p>
+    return <LoaderFullScreen />
   }
 
   return (

@@ -6,6 +6,7 @@ import { Set } from '../ts/interfaces/Set'
 import useGetSet from '../hooks/useGetSet'
 import useUpdateSet from '../hooks/useUpdateSet'
 import useDeleteSet from '../hooks/useDeleteSet'
+import LoaderFullScreen from '../components/LoaderFullScreen/LoaderFullScreen'
 
 const ManageSetPage = () => {
   const navigate = useNavigate()
@@ -22,21 +23,21 @@ const ManageSetPage = () => {
   const onDelete = () => deleteSet(id)
   const onCancel = () => navigate('/profile')
 
+  if (isLoadingSet) {
+    return <LoaderFullScreen />
+  }
+
   return (
     <Layout>
-      {isLoadingSet ? (
-        <p>Data processing</p>
-      ) : (
-        <EditSet
-          onSubmit={onSubmit}
-          onDelete={onDelete}
-          isLoading={isLoadingSet}
-          additionalBtnFn={onCancel}
-          additionalBtnName="Cancel"
-          error={errorMsg}
-          defaultData={collection}
-        />
-      )}
+      <EditSet
+        onSubmit={onSubmit}
+        onDelete={onDelete}
+        isLoading={isLoadingSet}
+        additionalBtnFn={onCancel}
+        additionalBtnName="Cancel"
+        error={errorMsg}
+        defaultData={collection}
+      />
     </Layout>
   )
 }

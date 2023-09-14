@@ -2,6 +2,7 @@ import { Navigate, useParams } from 'react-router-dom'
 import StudyMode from '../components/StudyMode/StudyMode'
 import Layout from '../layouts/Layout'
 import useGetStudyCollection from '../hooks/useGetStudyCollection'
+import LoaderFullScreen from '../components/LoaderFullScreen/LoaderFullScreen'
 
 const StudyPage = () => {
   const { id = '' } = useParams()
@@ -12,7 +13,7 @@ const StudyPage = () => {
   }
 
   if (isLoading) {
-    return <p>Loading...</p>
+    return <LoaderFullScreen />
   }
 
   return (

@@ -4,11 +4,18 @@ import StudyModes from '../components/StudyModes/StudyModes'
 import Layout from '../layouts/Layout'
 import useGetSetsWithLimit from '../hooks/useGetSetsWithLimit'
 import useGetSetName from '../hooks/useGetSetName'
+import LoaderFullScreen from '../components/LoaderFullScreen/LoaderFullScreen'
 
 const CoursePage = () => {
   const { id } = useParams()
-  const { data: name } = useGetSetName()
-  const { data: sets = [] } = useGetSetsWithLimit(2)
+  const { data: name, isLoading: isLoadingSetName } = useGetSetName()
+  const { data: sets = [], isLoading: isLoadingSets } = useGetSetsWithLimit(2)
+
+  const isAllLoaded = isLoadingSetName && isLoadingSets
+
+  if (isAllLoaded) {
+    return <LoaderFullScreen />
+  }
 
   return (
     <Layout>

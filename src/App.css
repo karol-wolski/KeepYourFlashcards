@@ -6,3 +6,13 @@
 .card.is-flipped {
   transform: translateX(-100%) rotateY(-180deg);
 }
+
+.circle-one {
+  animation-delay: 0.1s;
+}
+.circle-two {
+  animation-delay: 0.2s;
+}
+.circle-three {
+  animation-delay: 0.3s;
+}

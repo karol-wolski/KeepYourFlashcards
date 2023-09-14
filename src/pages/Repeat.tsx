@@ -6,6 +6,7 @@ import randomNumber from '../utils/randomNumber'
 import Button from '../components/Button/Button'
 import { Card } from '../ts/types/Card'
 import useGetStudyCollection from '../hooks/useGetStudyCollection'
+import LoaderFullScreen from '../components/LoaderFullScreen/LoaderFullScreen'
 
 const RepeatPage = () => {
   const { id = '' } = useParams()
@@ -27,12 +28,13 @@ const RepeatPage = () => {
   }
 
   if (isLoading) {
-    return <p>Loading...</p>
+    return <LoaderFullScreen />
   }
   const nextQuestion = () => {
     const randomNum = randomNumber(0, cards.length)
     setCurrentCard(cards[randomNum])
   }
+
   const handleResult = (prop: string) => {
     if (prop === 'great' && currentCard) {
       const filterArray = cards.filter((card) => card.id !== currentCard.id)

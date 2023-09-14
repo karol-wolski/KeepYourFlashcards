@@ -1,4 +1,5 @@
 import LearningDays from '../components/LearningDays/LearningDays'
+import LoaderFullScreen from '../components/LoaderFullScreen/LoaderFullScreen'
 import Records from '../components/Records/Records'
 import Section from '../components/Section/Section'
 import SectionWithSet from '../components/SectionWithSets/SectionWithSet'
@@ -12,10 +13,18 @@ import useGetWeeklyActivity from '../hooks/useGetWeeklyActivity'
 import Layout from '../layouts/Layout'
 
 const ProfilePage = () => {
-  const { data: sets = [] } = useGetSetsWithLimit(2)
-  const { data: lastSet } = useGetLastActiveSet()
-  const { data: numDaysInRow } = useGetNumLearningDaysInRow()
-  const { data: weeklyActivity } = useGetWeeklyActivity()
+  const { data: sets = [], isLoading: isLoadingSets } = useGetSetsWithLimit(2)
+  const { data: lastSet, isLoading: isLoadingLastSet } = useGetLastActiveSet()
+  const { data: numDaysInRow, isLoading: isLoadingDaysInRow } =
+    useGetNumLearningDaysInRow()
+  const { data: weeklyActivity, isLoading: isLoadingWeeklyActivity } =
+    useGetWeeklyActivity()
+
+  const isAllLoaded =
+    isLoadingDaysInRow &&
+    isLoadingLastSet &&
+    isLoadingSets &&
+    isLoadingWeeklyActivity
 
   const slides = [
     {
@@ -30,15 +39,9 @@ const ProfilePage = () => {
     },
   ]
 
-  // const weeklyActivity = [
-  //   { day: 23, dayName: 'Sun', status: 1 },
-  //   { day: 24, dayName: 'Mon', status: 2 },
-  //   { day: 25, dayName: 'Tue', status: 0 },
-  //   { day: 26, dayName: 'Wed', status: 0 },
-  //   { day: 27, dayName: 'Thu', status: 0 },
-  //   { day: 28, dayName: 'Fri', status: 0 },
-  //   { day: 29, dayName: 'Sat', status: 0 },
-  // ]
+  if (isAllLoaded) {
+    return <LoaderFullScreen />
+  }
 
   return (
     <Layout>
