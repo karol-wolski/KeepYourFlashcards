@@ -2,6 +2,7 @@ export interface Form<T> {
   onSubmit: (data: T) => void
   isLoading: boolean
   error: string
+  isSuccess?: boolean
 }
 
 export interface SetForm<T> extends Form<T> {
