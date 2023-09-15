@@ -3,14 +3,8 @@ export interface Form<T> {
   isLoading: boolean
   error: string
   isSuccess?: boolean
-}
-
-export interface SetForm<T> extends Form<T> {
-  additionalBtnFn: () => void
-  additionalBtnName: string
-}
-
-export interface SetEditForm<T> extends SetForm<T> {
+  additionalBtnFn?: () => void
+  additionalBtnName?: string
+  onDelete?: () => void
   defaultData?: T
-  onDelete: () => void
 }

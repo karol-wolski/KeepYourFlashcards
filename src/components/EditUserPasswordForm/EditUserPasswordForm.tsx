@@ -111,7 +111,7 @@ const EditUserPasswordForm = ({
         )}
       />
       <Button type="submit" variant="primary">
-        {isLoading ? 'Submiting...' : 'Submit'}
+        {isLoading ? 'Saving...' : 'Save'}
       </Button>
       {error && <p>{error}</p>}
     </form>

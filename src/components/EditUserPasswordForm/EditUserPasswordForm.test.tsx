@@ -5,7 +5,7 @@ import EditUserPasswordForm from './EditUserPasswordForm'
 
 let form: RenderResult
 
-describe('Register Form', () => {
+describe('Edit User Password Form', () => {
   const mockFn = vi.fn()
   const validPassword = 'Pa$$w0rd'
 
@@ -19,8 +19,8 @@ describe('Register Form', () => {
     expect(form.getByLabelText(/Current Password/i)).toBeInTheDocument()
     expect(form.getByLabelText('Password')).toBeInTheDocument()
     expect(form.getByLabelText(/Confirm Password/i)).toBeInTheDocument()
-    expect(form.getByText(/submit/i)).toBeInTheDocument()
-    expect(form.getByRole('button', { name: /submit/i })).toBeInTheDocument()
+    expect(form.getByText(/save/i)).toBeInTheDocument()
+    expect(form.getByRole('button', { name: /save/i })).toBeInTheDocument()
   })
 
   it('should display an error message for a current password less than 8 characters long', async () => {
@@ -35,11 +35,11 @@ describe('Register Form', () => {
     const confirmPassword = form.getByLabelText(/Confirm Password/i)
     fireEvent.change(confirmPassword, { target: { value: validPassword } })
 
-    const btn = form.getByRole('button', { name: /submit/i })
+    const btn = form.getByRole('button', { name: /save/i })
     await userEvent.click(btn)
 
     expect(
-      form.getByText('Password should have at least 8 chars.')
+      form.getByText('Current password should have at least 8 chars.')
     ).toBeInTheDocument()
   })
 
@@ -55,11 +55,11 @@ describe('Register Form', () => {
     const confirmPassword = form.getByLabelText(/Confirm Password/i)
     fireEvent.change(confirmPassword, { target: { value: validPassword } })
 
-    const btn = form.getByRole('button', { name: /submit/i })
+    const btn = form.getByRole('button', { name: /save/i })
     await userEvent.click(btn)
 
     expect(
-      form.getByText('Password should have less than 32 chars.')
+      form.getByText('Current password should have less than 32 chars.')
     ).toBeInTheDocument()
   })
 
@@ -75,7 +75,7 @@ describe('Register Form', () => {
     const confirmPassword = form.getByLabelText(/Confirm Password/i)
     fireEvent.change(confirmPassword, { target: { value: validPassword } })
 
-    const btn = form.getByRole('button', { name: /submit/i })
+    const btn = form.getByRole('button', { name: /save/i })
     await userEvent.click(btn)
 
     expect(
@@ -95,7 +95,7 @@ describe('Register Form', () => {
     const confirmPassword = form.getByLabelText(/Confirm Password/i)
     fireEvent.change(confirmPassword, { target: { value: validPassword } })
 
-    const btn = form.getByRole('button', { name: /submit/i })
+    const btn = form.getByRole('button', { name: /save/i })
     await userEvent.click(btn)
 
     expect(
@@ -115,11 +115,11 @@ describe('Register Form', () => {
     const confirmPassword = form.getByLabelText(/Confirm Password/i)
     fireEvent.change(confirmPassword, { target: { value: wrongPassword } })
 
-    const btn = form.getByRole('button', { name: /submit/i })
+    const btn = form.getByRole('button', { name: /save/i })
     await userEvent.click(btn)
 
     expect(
-      form.getByText('Password should have at least 8 chars.')
+      form.getByText('Confirm password should have at least 8 chars.')
     ).toBeInTheDocument()
   })
 
@@ -135,11 +135,11 @@ describe('Register Form', () => {
     const confirmPassword = form.getByLabelText(/Confirm Password/i)
     fireEvent.change(confirmPassword, { target: { value: wrongPassword } })
 
-    const btn = form.getByRole('button', { name: /submit/i })
+    const btn = form.getByRole('button', { name: /save/i })
     await userEvent.click(btn)
 
     expect(
-      form.getByText('Password should have less than 32 chars.')
+      form.getByText('Confirm password should have less than 32 chars.')
     ).toBeInTheDocument()
   })
 
@@ -153,7 +153,7 @@ describe('Register Form', () => {
     const confirmPassword = form.getByLabelText(/Confirm Password/i)
     fireEvent.change(confirmPassword, { target: { value: validPassword } })
 
-    const btn = form.getByRole('button', { name: /submit/i })
+    const btn = form.getByRole('button', { name: /save/i })
     await userEvent.click(btn)
 
     expect(mockFn).toBeCalledTimes(1)

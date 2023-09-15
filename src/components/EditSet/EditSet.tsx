@@ -4,7 +4,7 @@ import Button from '../Button/Button'
 import LabelInput from '../LabelInput/LabelInput'
 import { Answer } from '../../ts/types/Quiz'
 import { Set } from '../../ts/interfaces/Set'
-import { SetEditForm } from '../../ts/interfaces/Form'
+import { Form } from '../../ts/interfaces/Form'
 
 const EditSet = ({
   onSubmit,
@@ -14,7 +14,7 @@ const EditSet = ({
   isLoading,
   error,
   defaultData,
-}: SetEditForm<Set>) => {
+}: Form<Set>) => {
   const {
     control,
     handleSubmit,
@@ -191,9 +191,11 @@ const EditSet = ({
           Add card
         </Button>
         <div className="flex gap-[1.6rem]">
-          <Button type="button" variant="warn" onClick={additionalBtnFn}>
-            {additionalBtnName}
-          </Button>
+          {additionalBtnName && (
+            <Button type="button" variant="warn" onClick={additionalBtnFn}>
+              {additionalBtnName}
+            </Button>
+          )}
           <Button type="button" variant="danger" onClick={onDelete}>
             Remove set
           </Button>
