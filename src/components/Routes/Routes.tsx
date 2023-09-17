@@ -23,12 +23,12 @@ import PublicRoute from './PublicRoute'
 
 const router = createBrowserRouter([
   {
-    path: '/',
-    element: <App />,
-  },
-  {
     element: <AuthProvider />,
     children: [
+      {
+        path: '/',
+        element: <App />,
+      },
       {
         element: <ProtectedRoute />,
         children: [
