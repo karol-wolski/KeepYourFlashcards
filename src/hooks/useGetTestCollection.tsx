@@ -4,7 +4,7 @@ import { QuizCollection } from '../ts/types/QuizCollection'
 
 const useGetTestCollection = (id: string) => {
   return useQuery<QuizCollection>({
-    queryKey: ['study', { id }],
+    queryKey: ['test', { id }],
     queryFn: () => GetTest(id),
     enabled: !!id,
   })

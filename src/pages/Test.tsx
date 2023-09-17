@@ -19,7 +19,7 @@ const TestPage = () => {
   return (
     <Layout>
       <div className="max-w-[60rem] m-auto">
-        <TestMode collection={collection} />
+        {!isLoading && <TestMode collection={collection} />}
       </div>
     </Layout>
   )
