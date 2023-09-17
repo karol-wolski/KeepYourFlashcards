@@ -1,13 +1,51 @@
-import { useState } from 'react'
+import { useContext, useState, memo } from 'react'
 import { Link } from 'react-router-dom'
 import Button from '../Button/Button'
 import useGetNumLearningDaysInRow from '../../hooks/useGetNumLearningDaysInRow'
+import { AuthContext, IAuthContext } from '../../context/AuthContext'
 
-const Navigation = () => {
+interface INavigationLoggedIn {
+  isOpenMobileMenu: boolean
+}
+
+const NavigationLoggedIn = memo(({ isOpenMobileMenu }: INavigationLoggedIn) => {
   const { data: numDaysInRow } = useGetNumLearningDaysInRow()
-  const [isOpenMobileMenu, setIsOpenMobileMenu] = useState(false)
+  return (
+    <div
+      className={`flex ${
+        !isOpenMobileMenu ? 'max-md:hidden' : ''
+      } justify-between max-md:flex-col gap-[1.6rem] w-full`}
+    >
+      <ul className="flex gap-[1.6rem] items-center [&>li>a]:text-[1.6rem] [&>*>a:hover]:text-secondary mx-[1.6rem] max-md:flex-col">
+        <li>
+          <Link to="/profile">Dashboard</Link>
+        </li>
+        <li>
+          <Link to="/yourSets">Sets</Link>
+        </li>
+      </ul>
 
+      <ul className="flex gap-[1.6rem] items-center [&>li>*]:text-[1.6rem] [&>*>a:hover]:text-secondary mx-[1.6rem]  max-md:flex-col">
+        <li className="hidden md:block">
+          <i className="fa-solid fa-fire text-secondary" />
+          <span className="ml-[0.5rem]">{numDaysInRow}</span>
+        </li>
+        <li>
+          <Link to="/create-set">Add set</Link>
+        </li>
+        <li>
+          <Link to="/settings">Profile</Link>
+        </li>
+      </ul>
+    </div>
+  )
+})
+
+const Navigation = memo(() => {
+  const { isLoggedIn } = useContext(AuthContext) as IAuthContext
+  const [isOpenMobileMenu, setIsOpenMobileMenu] = useState(false)
   const toggleMenu = () => setIsOpenMobileMenu((prevState) => !prevState)
+
   return (
     <nav
       className={`h-[5.6rem] static ${
@@ -27,36 +65,21 @@ const Navigation = () => {
             )}
           </Button>
         </div>
-        <div
-          className={`flex ${
-            !isOpenMobileMenu ? 'max-md:hidden' : ''
-          } justify-between max-md:flex-col gap-[1.6rem] w-full`}
-        >
+        {isLoggedIn ? (
+          <NavigationLoggedIn isOpenMobileMenu={isOpenMobileMenu} />
+        ) : (
           <ul className="flex gap-[1.6rem] items-center [&>li>a]:text-[1.6rem] [&>*>a:hover]:text-secondary mx-[1.6rem] max-md:flex-col">
             <li>
-              <Link to="/profile">Dashboard</Link>
+              <Link to="/register">Sign up</Link>
             </li>
             <li>
-              <Link to="/yourSets">Sets</Link>
+              <Link to="/login">Log in</Link>
             </li>
           </ul>
-
-          <ul className="flex gap-[1.6rem] items-center [&>li>*]:text-[1.6rem] [&>*>a:hover]:text-secondary mx-[1.6rem]  max-md:flex-col">
-            <li className="hidden md:block">
-              <i className="fa-solid fa-fire text-secondary" />
-              <span className="ml-[0.5rem]">{numDaysInRow}</span>
-            </li>
-            <li>
-              <Link to="/create-set">Add set</Link>
-            </li>
-            <li>
-              <Link to="/settings">Profile</Link>
-            </li>
-          </ul>
-        </div>
+        )}
       </div>
     </nav>
   )
-}
+})
 
 export default Navigation
