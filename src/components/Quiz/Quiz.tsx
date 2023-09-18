@@ -47,21 +47,24 @@ const Quiz = ({ questions, handleResult }: Props) => {
       onSubmit={handleSubmit(onSubmit)}
       className="flex flex-col gap-[1.6rem] [&>*:last-child]:self-start"
     >
-      {questions.map((question) => (
-        <div key={question._id}>
-          <p className="text-[1.6rem]">{question.question}</p>
-          {question.answers.map((answer, i) => (
-            <LabelInputRadio
-              key={answer.text}
-              id={`${question._id}-${i}`}
-              value={answer.text}
-              register={register}
-              registerKey={question._id}
-              validationSchema={{ required: 'Mark correct answer' }}
-            />
-          ))}
-        </div>
-      ))}
+      {Array.isArray(questions) &&
+        questions.map((question) => (
+          <div key={question._id}>
+            <p className="text-[1.6rem]">{question.question}</p>
+            {question.answers
+              .sort(() => Math.random() - 0.5)
+              .map((answer, i) => (
+                <LabelInputRadio
+                  key={answer.text}
+                  id={`${question._id}-${i}`}
+                  value={answer.text}
+                  register={register}
+                  registerKey={question._id}
+                  validationSchema={{ required: 'Mark correct answer' }}
+                />
+              ))}
+          </div>
+        ))}
 
       {!isEmptyObject(errors) && (
         <p className="text-danger text-[1.4rem]">Mark all anwers</p>

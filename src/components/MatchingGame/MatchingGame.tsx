@@ -1,20 +1,13 @@
-import { useEffect, useState, useRef } from 'react'
-import { Card } from '../../ts/types/Card'
-import sortArrayRandomly from '../../utils/sortArrayRandomly'
+import { useState, useRef } from 'react'
+import { SeparatedCard } from '../../ts/types/SeparatedCard'
 
 interface Props {
-  cards: Card[]
+  cards: SeparatedCard[]
   handleWin: () => void
 }
 
-type SeparatedCard = {
-  id: string
-  value: string
-  pair_id: string
-}
-
 const MatchingGame = ({ cards, handleWin }: Props) => {
-  const [cardsArray, setCardsArray] = useState<SeparatedCard[]>([])
+  const [cardsArray] = useState<SeparatedCard[]>(cards)
   const [prevCardId, setPrevCardId] = useState<{
     id: string
     pair_id: string
@@ -27,35 +20,7 @@ const MatchingGame = ({ cards, handleWin }: Props) => {
   const [correctAnswerCounter, setCorrectAnswerCounter] = useState(0)
   const itemsRef = useRef<HTMLDivElement[]>([])
 
-  useEffect(() => {
-    const divideCard = () => {
-      const questions = cards.map((card) => {
-        return {
-          id: `q_${card.id}`,
-          value: card.question,
-          pair_id: card.id,
-        }
-      })
-
-      const answers = cards.map((card) => {
-        return {
-          id: `a_${card.id}`,
-          value: card.answer,
-          pair_id: card.id,
-        }
-      })
-
-      return [...questions, ...answers]
-    }
-
-    const dividedArray = divideCard()
-    const arr = sortArrayRandomly<SeparatedCard>(dividedArray)
-    setCardsArray(arr)
-  }, [cards])
-
-  useEffect(() => {
-    if (correctAnswerCounter === cards.length) handleWin()
-  }, [cards.length, correctAnswerCounter, handleWin])
+  if (correctAnswerCounter === cards.length / 2) handleWin()
 
   const handleBtnClick = (id: string, pair_id: string, refIdx: number) => {
     if (prevCardId.refIdx === null) {

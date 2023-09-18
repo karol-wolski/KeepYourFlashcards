@@ -5,13 +5,13 @@ import useGetMatchingCollection from '../hooks/useGetMatchingCollection'
 import LoaderFullScreen from '../components/LoaderFullScreen/LoaderFullScreen'
 
 const MatchingPage = () => {
-  const { id = '' } = useParams()
+  const { id } = useParams()
   const {
     data: collection,
     isError,
     isLoading,
     refetch,
-  } = useGetMatchingCollection(id)
+  } = useGetMatchingCollection(id ?? '')
 
   if (!id || isError) {
     return <Navigate to="/" />
@@ -24,7 +24,7 @@ const MatchingPage = () => {
   return (
     <Layout>
       <div className="max-w-[61rem] mx-auto">
-        {collection && (
+        {!isLoading && (
           <>
             <h2 className="font-bold text-[1.6rem] mb-[5rem]">
               {collection.name} - Matching mode

@@ -4,7 +4,7 @@ import { StudyCollection } from '../ts/types/StudyCollection'
 
 const useGetMatchingCollection = (id: string) => {
   return useQuery<StudyCollection>({
-    queryKey: ['study', { id }],
+    queryKey: ['match', { id }],
     queryFn: () => GetMatching(id),
     enabled: !!id,
   })
