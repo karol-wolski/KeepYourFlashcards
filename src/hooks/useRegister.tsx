@@ -10,7 +10,7 @@ const useRegister = (handleError: HandleMsg, handleSuccess: HandleMsg) => {
       handleError('')
     },
     onError: ({ response }) => {
-      handleError(response.data.message)
+      handleError(response.data.errors[0].msg)
     },
   })
 }

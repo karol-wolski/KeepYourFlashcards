@@ -7,6 +7,7 @@ import './index.css'
 import router from './components/Routes/Routes'
 import queryClient from './api/queryClient'
 import LoaderFullScreen from './components/LoaderFullScreen/LoaderFullScreen'
+import 'react-toastify/dist/ReactToastify.css'
 
 ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
   <React.StrictMode>
