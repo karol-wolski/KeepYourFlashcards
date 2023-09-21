@@ -4,7 +4,7 @@ import { Login } from '../../ts/types/Login'
 import Button from '../Button/Button'
 import { Form } from '../../ts/interfaces/Form'
 
-const LoginForm = ({ onSubmit, isLoading, error }: Form<Login>) => {
+const LoginForm = ({ onSubmit, isLoading }: Form<Login>) => {
   const {
     control,
     handleSubmit,
@@ -76,7 +76,6 @@ const LoginForm = ({ onSubmit, isLoading, error }: Form<Login>) => {
       <Button type="submit" variant="primary">
         {isLoading ? 'Submiting...' : 'Submit'}
       </Button>
-      {error && <p>{error}</p>}
     </form>
   )
 }

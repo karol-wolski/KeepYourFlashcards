@@ -4,7 +4,7 @@ import { Register } from '../../ts/types/Register'
 import Button from '../Button/Button'
 import { Form } from '../../ts/interfaces/Form'
 
-const RegisterForm = ({ onSubmit, isLoading, error }: Form<Register>) => {
+const RegisterForm = ({ onSubmit, isLoading }: Form<Register>) => {
   const {
     control,
     handleSubmit,
@@ -131,7 +131,6 @@ const RegisterForm = ({ onSubmit, isLoading, error }: Form<Register>) => {
       <Button type="submit" variant="primary">
         {isLoading ? 'Submiting...' : 'Submit'}
       </Button>
-      {error && <p>{error}</p>}
     </form>
   )
 }

@@ -1,20 +1,20 @@
-import { useState } from 'react'
+import { useCallback } from 'react'
+import { ToastContainer, toast } from 'react-toastify'
 import { Navigate } from 'react-router-dom'
 import ResetPasswordForm from '../components/ResetPasswordForm/ResetPasswordForm'
 import LayoutWithImage from '../layouts/LayoutWithImage'
 import { ResetPassword } from '../ts/types/ResetPassword'
 import useQuery from '../hooks/useQuery'
 import useResetPassword from '../hooks/useResetPassword'
+import useMessage from '../hooks/useMessage'
+import { toastError } from '../utils/toastSettings'
 
 const ResetPasswordPage = () => {
-  const [successMsg, setSuccessMsg] = useState<string>('')
-  const [errorMsg, setErrorMsg] = useState<string>('')
+  const [successMsg, setSuccess] = useMessage()
+  const [errorMsg, setError] = useMessage()
   const resetId = useQuery().get('resetId') || ''
 
-  const setSuccess = (msg: string) => setSuccessMsg(msg)
-  const setError = (msg: string) => setErrorMsg(msg)
-
-  const { mutate, isLoading, isSuccess } = useResetPassword(
+  const { mutate, isLoading, isSuccess, isError } = useResetPassword(
     setError,
     setSuccess
   )
@@ -25,9 +25,10 @@ const ResetPasswordPage = () => {
       resetToken: resetId,
     })
 
-  if (!resetId.length) {
-    return <Navigate to="/" />
-  }
+  const showToast = useCallback(() => toast(errorMsg, toastError), [errorMsg])
+  if (isError) showToast()
+
+  if (!resetId.length) return <Navigate to="/" />
 
   return (
     <LayoutWithImage title="Create new password">
@@ -40,6 +41,7 @@ const ResetPasswordPage = () => {
           error={errorMsg}
         />
       )}
+      <ToastContainer />
     </LayoutWithImage>
   )
 }
