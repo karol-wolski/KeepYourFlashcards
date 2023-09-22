@@ -7,12 +7,14 @@ import useGetSet from '../hooks/useGetSet'
 import useUpdateSet from '../hooks/useUpdateSet'
 import useDeleteSet from '../hooks/useDeleteSet'
 import LoaderFullScreen from '../components/LoaderFullScreen/LoaderFullScreen'
+import Modal from '../components/Modal/Modal'
 
 const ManageSetPage = () => {
   const navigate = useNavigate()
   const { id = '' } = useParams()
 
   const [errorMsg, setErrorMsg] = useState<string>('')
+  const [isOpenModal, setIsOpenModal] = useState<boolean>()
   const setError = (msg: string) => setErrorMsg(msg)
 
   const { data: collection, isLoading: isLoadingSet } = useGetSet(id)
@@ -20,8 +22,10 @@ const ManageSetPage = () => {
   const { mutate: deleteSet } = useDeleteSet(setError)
 
   const onSubmit = (data: Set) => updateSet(data)
-  const onDelete = () => deleteSet(id)
+  const onDelete = () => setIsOpenModal(true)
   const onCancel = () => navigate('/profile')
+  const handleDelete = () => deleteSet(id)
+  const handleCancelModal = () => setIsOpenModal(false)
 
   if (isLoadingSet) {
     return <LoaderFullScreen />
@@ -38,6 +42,15 @@ const ManageSetPage = () => {
         error={errorMsg}
         defaultData={collection}
       />
+      {isOpenModal && (
+        <Modal
+          title={`Remove: ${collection?.name}`}
+          desc="Do you want to remove this set?"
+          handleSubmit={handleDelete}
+          handleCancel={handleCancelModal}
+          buttonSubmitName="Remove"
+        />
+      )}
     </Layout>
   )
 }
