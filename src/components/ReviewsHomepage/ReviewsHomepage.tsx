@@ -5,13 +5,13 @@ const reviews = [
     id: '0001',
     author: 'John Doe',
     review:
-      'KeepYourNotes is a brilliant option for busy people - just a few minutes a day is enough to learn new flashcards. Here you will find various tasks that motivate tests. The application will show you that learning can really be enjoyable!',
+      'KeepYourFlashcards is a brilliant option for busy people - just a few minutes a day is enough to learn new flashcards. Here you will find various tasks that motivate tests. The application will show you that learning can really be enjoyable!',
   },
   {
     id: '0002',
     author: 'Anna Kowalska',
     review:
-      'I tested the KeepYourNotes platform and the results exceeded my wildest expectations! I learned anywhere and anytime, adapting learning to my schedule, not the other way around :). This is an ideal solution for working people who want to develop and have little free time.',
+      'I tested the KeepYourFlashcards platform and the results exceeded my wildest expectations! I learned anywhere and anytime, adapting learning to my schedule, not the other way around :). This is an ideal solution for working people who want to develop and have little free time.',
   },
   {
     id: '0003',
