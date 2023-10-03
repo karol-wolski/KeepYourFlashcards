@@ -10,6 +10,7 @@ import useGetLastActiveSet from '../hooks/useGetLastActiveSet'
 import useGetNumLearningDaysInRow from '../hooks/useGetNumLearningDaysInRow'
 import useGetSetsWithLimit from '../hooks/useGetSetsWithLimit'
 import useGetWeeklyActivity from '../hooks/useGetWeeklyActivity'
+import useGetWeeklyGoal from '../hooks/useGetWeeklyGoal'
 import Layout from '../layouts/Layout'
 
 const ProfilePage = () => {
@@ -19,23 +20,28 @@ const ProfilePage = () => {
     useGetNumLearningDaysInRow()
   const { data: weeklyActivity, isLoading: isLoadingWeeklyActivity } =
     useGetWeeklyActivity()
+  const {
+    data: { repetitions, time },
+    isLoading: isLoadingWeeklyGoal,
+  } = useGetWeeklyGoal()
 
   const isAllLoaded =
     isLoadingDaysInRow &&
     isLoadingLastSet &&
     isLoadingSets &&
-    isLoadingWeeklyActivity
+    isLoadingWeeklyActivity &&
+    isLoadingWeeklyGoal
 
   const slides = [
     {
       id: '1',
       iconClass: 'fa-clock',
-      text: '45 mins',
+      text: `${time} mins`,
     },
     {
       id: '2',
       iconClass: 'fa-chalkboard',
-      text: '100 repetitions',
+      text: `${repetitions} repetitions`,
     },
   ]
 
