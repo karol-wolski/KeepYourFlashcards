@@ -116,8 +116,7 @@ const SettingsPage = () => {
           <EditUserWeeklyGoalForm
             onSubmit={onSubmitWeeklyGoal}
             isLoading={isLoadingWeeklyGoal}
-            error={errorPasswordMsg}
-            isSuccess={isSuccessEditPassword}
+            error={errorWeeklyGoalMsg}
             defaultData={weeklyGoalData}
           />
         )}

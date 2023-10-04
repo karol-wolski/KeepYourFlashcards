@@ -1,4 +1,3 @@
-import { useEffect } from 'react'
 import { Controller, useForm } from 'react-hook-form'
 import LabelInput from '../LabelInput/LabelInput'
 import Button from '../Button/Button'
@@ -9,21 +8,15 @@ const EditUserWeeklyGoalForm = ({
   onSubmit,
   isLoading,
   error,
-  isSuccess,
   defaultData,
 }: Form<WeeklyGoal>) => {
   const {
     control,
     handleSubmit,
     formState: { errors },
-    reset,
   } = useForm({
     defaultValues: defaultData,
   })
-
-  useEffect(() => {
-    reset()
-  }, [isSuccess, reset])
 
   return (
     <form
