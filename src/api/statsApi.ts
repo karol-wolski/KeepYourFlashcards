@@ -1,7 +1,8 @@
 import axios from 'axios'
 import { getFromLocalStorage } from '../utils/localStorage'
+import { WeeklyGoal } from '../ts/types/WeeklyGoal'
 
-export const cardsApi = axios.create({
+export const statsApi = axios.create({
   baseURL: import.meta.env.VITE_API_URL,
   withCredentials: true,
   headers: {
@@ -11,16 +12,23 @@ export const cardsApi = axios.create({
 })
 
 export const GetNumberDaysInRow = async () => {
-  const response = await cardsApi.get('flashcardsStats/daysInRow')
+  const response = await statsApi.get('flashcardsStats/daysInRow')
   return response.data
 }
 
 export const GetWeeklyActivity = async () => {
-  const response = await cardsApi.get('flashcardsStats/weeklyActivity')
+  const response = await statsApi.get('flashcardsStats/weeklyActivity')
   return response.data
 }
 
 export const GetWeeklyGoal = async () => {
-  const response = await cardsApi.get('flashcardsStats/yourWeeklyGoal')
+  const response = await statsApi.get('flashcardsStats/yourWeeklyGoal')
+  return response.data
+}
+
+export const PatchWeeklyGoal = async (data: WeeklyGoal) => {
+  const response = await statsApi.patch('flashcardsStats/yourWeeklyGoal', {
+    yourWeeklyGoal: data,
+  })
   return response.data
 }

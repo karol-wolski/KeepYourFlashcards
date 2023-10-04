@@ -1,3 +1,4 @@
+import { useEffect, useState } from 'react'
 import LearningDays from '../components/LearningDays/LearningDays'
 import LoaderFullScreen from '../components/LoaderFullScreen/LoaderFullScreen'
 import Records from '../components/Records/Records'
@@ -12,6 +13,7 @@ import useGetSetsWithLimit from '../hooks/useGetSetsWithLimit'
 import useGetWeeklyActivity from '../hooks/useGetWeeklyActivity'
 import useGetWeeklyGoal from '../hooks/useGetWeeklyGoal'
 import Layout from '../layouts/Layout'
+import { WeeklyGoalSlide } from '../ts/types/WeeklyGoalSlide'
 
 const ProfilePage = () => {
   const { data: sets = [], isLoading: isLoadingSets } = useGetSetsWithLimit(2)
@@ -20,11 +22,11 @@ const ProfilePage = () => {
     useGetNumLearningDaysInRow()
   const { data: weeklyActivity, isLoading: isLoadingWeeklyActivity } =
     useGetWeeklyActivity()
-  const {
-    data: { repetitions, time },
-    isLoading: isLoadingWeeklyGoal,
-  } = useGetWeeklyGoal()
-
+  const { data: weeklyGoal, isLoading: isLoadingWeeklyGoal } =
+    useGetWeeklyGoal()
+  const [weeklyGoalSlides, setWeeklyGoalSlides] = useState<WeeklyGoalSlide[]>(
+    []
+  )
   const isAllLoaded =
     isLoadingDaysInRow &&
     isLoadingLastSet &&
@@ -32,18 +34,21 @@ const ProfilePage = () => {
     isLoadingWeeklyActivity &&
     isLoadingWeeklyGoal
 
-  const slides = [
-    {
-      id: '1',
-      iconClass: 'fa-clock',
-      text: `${time} mins`,
-    },
-    {
-      id: '2',
-      iconClass: 'fa-chalkboard',
-      text: `${repetitions} repetitions`,
-    },
-  ]
+  useEffect(() => {
+    if (weeklyGoal)
+      setWeeklyGoalSlides([
+        {
+          id: '1',
+          iconClass: 'fa-clock',
+          text: `${weeklyGoal.time} mins`,
+        },
+        {
+          id: '2',
+          iconClass: 'fa-chalkboard',
+          text: `${weeklyGoal.repetitions} repetitions`,
+        },
+      ])
+  }, [weeklyGoal])
 
   if (isAllLoaded) {
     return <LoaderFullScreen />
@@ -75,9 +80,11 @@ const ProfilePage = () => {
             <p className="text-[1.6rem]">We cannot load your statistics</p>
           )}
         </Section>
-        <Section title="Your Weekly Goals">
-          <TileSlider slides={slides} />
-        </Section>
+        {weeklyGoalSlides.length && (
+          <Section title="Your Weekly Goals">
+            <TileSlider slides={weeklyGoalSlides} />
+          </Section>
+        )}
         <div className="sm:col-span-2 lg:col-start-3">
           <Section title="Records">
             <Records
