@@ -19,3 +19,8 @@ export const GetWeeklyActivity = async () => {
   const response = await cardsApi.get('flashcardsStats/weeklyActivity')
   return response.data
 }
+
+export const GetWeeklyGoal = async () => {
+  const response = await cardsApi.get('flashcardsStats/yourWeeklyGoal')
+  return response.data
+}
