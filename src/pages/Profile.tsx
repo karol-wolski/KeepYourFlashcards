@@ -14,6 +14,7 @@ import useGetWeeklyActivity from '../hooks/useGetWeeklyActivity'
 import useGetWeeklyGoal from '../hooks/useGetWeeklyGoal'
 import Layout from '../layouts/Layout'
 import { WeeklyGoalSlide } from '../ts/types/WeeklyGoalSlide'
+import useGetRecords from '../hooks/useGetRecords'
 
 const ProfilePage = () => {
   const { data: sets = [], isLoading: isLoadingSets } = useGetSetsWithLimit(2)
@@ -27,12 +28,14 @@ const ProfilePage = () => {
   const [weeklyGoalSlides, setWeeklyGoalSlides] = useState<WeeklyGoalSlide[]>(
     []
   )
+  const { data: records, isLoading: isLoadingRecords } = useGetRecords()
   const isAllLoaded =
     isLoadingDaysInRow &&
     isLoadingLastSet &&
     isLoadingSets &&
     isLoadingWeeklyActivity &&
-    isLoadingWeeklyGoal
+    isLoadingWeeklyGoal &&
+    isLoadingRecords
 
   useEffect(() => {
     if (weeklyGoal)
@@ -85,15 +88,17 @@ const ProfilePage = () => {
             <TileSlider slides={weeklyGoalSlides} />
           </Section>
         )}
-        <div className="sm:col-span-2 lg:col-start-3">
-          <Section title="Records">
-            <Records
-              numOfDaysInRow={60}
-              NumOfMinutesWeek={300}
-              numOfRepetitions={299}
-            />
-          </Section>
-        </div>
+        {records && (
+          <div className="sm:col-span-2 lg:col-start-3">
+            <Section title="Records">
+              <Records
+                numOfDaysInRow={records?.days || 0}
+                NumOfMinutesWeek={records?.weekly.learningTime || 0}
+                numOfRepetitions={records?.weekly.repetitions || 0}
+              />
+            </Section>
+          </div>
+        )}
       </div>
     </Layout>
   )
