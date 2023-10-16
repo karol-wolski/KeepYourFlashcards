@@ -32,3 +32,8 @@ export const PatchWeeklyGoal = async (data: WeeklyGoal) => {
   })
   return response.data
 }
+
+export const GetRecords = async () => {
+  const response = await statsApi.get('flashcardsStats/records')
+  return response.data
+}
