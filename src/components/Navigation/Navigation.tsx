@@ -6,45 +6,57 @@ import { AuthContext, IAuthContext } from '../../context/AuthContext'
 
 interface INavigationLoggedIn {
   isOpenMobileMenu: boolean
+  logOut: () => void
 }
 
-const NavigationLoggedIn = memo(({ isOpenMobileMenu }: INavigationLoggedIn) => {
-  const { data: numDaysInRow } = useGetNumLearningDaysInRow()
-  return (
-    <div
-      className={`flex ${
-        !isOpenMobileMenu ? 'max-md:hidden' : ''
-      } justify-between max-md:flex-col gap-[1.6rem] w-full`}
-    >
-      <ul className="flex gap-[1.6rem] items-center [&>li>a]:text-[1.6rem] [&>*>a:hover]:text-secondary mx-[1.6rem] max-md:flex-col">
-        <li>
-          <Link to="/profile">Dashboard</Link>
-        </li>
-        <li>
-          <Link to="/yourSets">Sets</Link>
-        </li>
-      </ul>
+const NavigationLoggedIn = memo(
+  ({ isOpenMobileMenu, logOut }: INavigationLoggedIn) => {
+    const { data: numDaysInRow } = useGetNumLearningDaysInRow()
+    return (
+      <div
+        className={`flex ${
+          !isOpenMobileMenu ? 'max-md:hidden' : ''
+        } justify-between max-md:flex-col gap-[1.6rem] w-full`}
+      >
+        <ul className="flex gap-[1.6rem] items-center [&>li>a]:text-[1.6rem] [&>*>a:hover]:text-secondary mx-[1.6rem] max-md:flex-col">
+          <li>
+            <Link to="/profile">Dashboard</Link>
+          </li>
+          <li>
+            <Link to="/yourSets">Sets</Link>
+          </li>
+        </ul>
 
-      <ul className="flex gap-[1.6rem] items-center [&>li>*]:text-[1.6rem] [&>*>a:hover]:text-secondary mx-[1.6rem]  max-md:flex-col">
-        <li className="hidden md:block">
-          <i className="fa-solid fa-fire text-secondary" />
-          <span className="ml-[0.5rem]">{numDaysInRow}</span>
-        </li>
-        <li>
-          <Link to="/create-set">Add set</Link>
-        </li>
-        <li>
-          <Link to="/settings">Profile</Link>
-        </li>
-      </ul>
-    </div>
-  )
-})
+        <ul className="flex gap-[1.6rem] items-center [&>li>*]:text-[1.6rem] [&>*>:hover]:text-secondary mx-[1.6rem]  max-md:flex-col">
+          <li className="hidden md:block">
+            <i className="fa-solid fa-fire text-secondary" />
+            <span className="ml-[0.5rem]">{numDaysInRow}</span>
+          </li>
+          <li>
+            <Link to="/create-set">Add set</Link>
+          </li>
+          <li>
+            <Link to="/settings">Profile</Link>
+          </li>
+          <li>
+            <button type="button" onClick={logOut} aria-label="Logout">
+              <i className="fa-solid fa-power-off text-[1.6rem]" />
+            </button>
+          </li>
+        </ul>
+      </div>
+    )
+  }
+)
 
 const Navigation = memo(() => {
-  const { isLoggedIn } = useContext(AuthContext) as IAuthContext
+  const { isLoggedIn, setIsLoggedIn } = useContext(AuthContext) as IAuthContext
   const [isOpenMobileMenu, setIsOpenMobileMenu] = useState(false)
   const toggleMenu = () => setIsOpenMobileMenu((prevState) => !prevState)
+
+  const logOut = () => {
+    setIsLoggedIn(!isLoggedIn)
+  }
 
   return (
     <nav
@@ -66,7 +78,10 @@ const Navigation = memo(() => {
           </Button>
         </div>
         {isLoggedIn ? (
-          <NavigationLoggedIn isOpenMobileMenu={isOpenMobileMenu} />
+          <NavigationLoggedIn
+            isOpenMobileMenu={isOpenMobileMenu}
+            logOut={logOut}
+          />
         ) : (
           <ul className="flex gap-[1.6rem] items-center [&>li>a]:text-[1.6rem] [&>*>a:hover]:text-secondary mx-[1.6rem] max-md:flex-col">
             <li>
