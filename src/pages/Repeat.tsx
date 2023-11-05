@@ -7,14 +7,15 @@ import Button from '../components/Button/Button'
 import { Card } from '../ts/types/Card'
 import useGetStudyCollection from '../hooks/useGetStudyCollection'
 import LoaderFullScreen from '../components/LoaderFullScreen/LoaderFullScreen'
+import usePatchNumOfRepetitions from '../hooks/usePatchNumOfRepetitions'
 
 const RepeatPage = () => {
   const { id = '' } = useParams()
   const { data: collection, isError, isLoading } = useGetStudyCollection(id)
-
+  const { mutate } = usePatchNumOfRepetitions()
   const [cards, setCards] = useState<Card[]>([])
   const [currentCard, setCurrentCard] = useState<Card>()
-
+  const [correctAnswer, setCorrectAnswer] = useState<number>(0)
   useEffect(() => {
     if (collection) setCards(collection.flashcards)
   }, [collection])
@@ -22,6 +23,13 @@ const RepeatPage = () => {
   useEffect(() => {
     setCurrentCard(cards[0])
   }, [cards])
+
+  useEffect(() => {
+    if (cards.length === 0 || correctAnswer === 5) {
+      mutate({ repetitions: correctAnswer })
+      setCorrectAnswer(0)
+    }
+  }, [cards, correctAnswer, mutate])
 
   if (!id || isError) {
     return <Navigate to="/" />
@@ -37,6 +45,7 @@ const RepeatPage = () => {
 
   const handleResult = (prop: string) => {
     if (prop === 'great' && currentCard) {
+      setCorrectAnswer((prevState) => prevState + 1)
       const filterArray = cards.filter((card) => card.id !== currentCard.id)
       setCards(filterArray)
     }
