@@ -1,10 +1,12 @@
 import { Fragment } from 'react'
 import { Controller, useFieldArray, useForm } from 'react-hook-form'
+import Select from 'react-select'
 import Button from '../Button/Button'
 import LabelInput from '../LabelInput/LabelInput'
 import { Answer } from '../../ts/types/Quiz'
 import { Set } from '../../ts/interfaces/Set'
 import { Form } from '../../ts/interfaces/Form'
+import cardLangs from '../../constants/CardLang'
 
 const AddSet = ({
   onSubmit,
@@ -31,6 +33,8 @@ const AddSet = ({
           ],
         },
       ],
+      frontLang: undefined,
+      backLang: undefined,
     },
   })
 
@@ -63,6 +67,7 @@ const AddSet = ({
       <Controller
         name="name"
         control={control}
+        defaultValue=""
         rules={{
           required: true && 'Please enter the title of your set',
           minLength: {
@@ -80,6 +85,48 @@ const AddSet = ({
           />
         )}
       />
+      <span className="text-[1.6rem]">Language front</span>
+      <Controller
+        control={control}
+        defaultValue=""
+        render={({ field: { onChange, value, name, ref } }) => (
+          <Select
+            ref={ref}
+            value={cardLangs.find((c) => c.value === value)}
+            name={name}
+            options={cardLangs}
+            onChange={(selectedOption: any) => {
+              onChange(selectedOption.value)
+            }}
+            classNames={{
+              control: () => 'text-[3rem]',
+              menuList: () => 'text-[1.2rem]',
+            }}
+          />
+        )}
+        name="frontLang"
+      />
+      <span className="text-[1.6rem]">Language back</span>
+      <Controller
+        control={control}
+        defaultValue=""
+        render={({ field: { onChange, value, name, ref } }) => (
+          <Select
+            ref={ref}
+            value={cardLangs.find((c) => c.value === value)}
+            name={name}
+            options={cardLangs}
+            onChange={(selectedOption: any) => {
+              onChange(selectedOption.value)
+            }}
+            classNames={{
+              control: () => 'text-[3rem]',
+              menuList: () => 'text-[1.2rem]',
+            }}
+          />
+        )}
+        name="backLang"
+      />
       <div className=" [&>*:nth-child(2)]:mb-[1.6rem]">
         <h3 className="text-[1.6rem] mb-[1.8rem] font-bold">Cards</h3>
         {fields.map(({ id }, index) => {
@@ -88,6 +135,7 @@ const AddSet = ({
               <Controller
                 name={`cards[${index}].question`}
                 control={control}
+                defaultValue=""
                 rules={{
                   required: true && 'Please enter the question',
                   minLength: {
@@ -109,6 +157,7 @@ const AddSet = ({
                 <Controller
                   name={`cards[${index}].answers[0].text`}
                   control={control}
+                  defaultValue=""
                   rules={{
                     required: true && 'Please enter the correct answer',
                   }}
@@ -127,6 +176,7 @@ const AddSet = ({
                 <Controller
                   name={`cards[${index}].answers[1].text`}
                   control={control}
+                  defaultValue=""
                   rules={{
                     required: true && 'Please enter the first false answer',
                   }}
@@ -145,6 +195,7 @@ const AddSet = ({
                 <Controller
                   name={`cards[${index}].answers[2].text`}
                   control={control}
+                  defaultValue=""
                   rules={{
                     required: true && 'Please enter the second false answer',
                   }}
@@ -163,6 +214,7 @@ const AddSet = ({
                 <Controller
                   name={`cards[${index}].answers[3].text`}
                   control={control}
+                  defaultValue=""
                   rules={{
                     required: true && 'Please enter the third false answer',
                   }}

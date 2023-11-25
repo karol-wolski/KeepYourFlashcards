@@ -61,6 +61,8 @@ const RepeatPage = () => {
             card={currentCard}
             handleResult={handleResult}
             isLastCard={cards.length === 1}
+            langFront={collection.frontLang}
+            langBack={collection.backLang}
           />
         ) : (
           <div className="h-[30rem] flex flex-col gap-[1.6rem] justify-center items-center border-[2px] border-primary">

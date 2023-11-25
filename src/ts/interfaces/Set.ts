@@ -10,4 +10,6 @@ export interface Set extends FieldValues {
       isCorrect: boolean
     }[]
   }[]
+  frontLang?: string | undefined
+  backLang?: string | undefined
 }

@@ -24,6 +24,8 @@ describe('Repeat modw component', () => {
         card={data.card}
         handleResult={mockFn}
         isLastCard={false}
+        langFront="pl"
+        langBack="en"
       />
     )
   })
