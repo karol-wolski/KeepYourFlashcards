@@ -7,6 +7,8 @@ interface Props {
   card: CardType
   collectionName: string
   isLastCard: boolean
+  langFront: string
+  langBack: string
   handleResult: (result: string) => void
 }
 
@@ -14,6 +16,8 @@ const RepeatMode = ({
   card,
   collectionName,
   isLastCard,
+  langFront,
+  langBack,
   handleResult,
 }: Props) => {
   const divRef = useRef<HTMLDivElement>(null)
@@ -53,8 +57,18 @@ const RepeatMode = ({
           <p className="text-[1.6rem] text-danger">Last question</p>
         )}
       </div>
-      <Card side="QUESTION" text={card.question} />
-      <Card side="ANSWER" text={answer}>
+      <Card
+        side="QUESTION"
+        text={card.question}
+        isActiveSpeaker
+        cardLang={langFront}
+      />
+      <Card
+        side="ANSWER"
+        text={answer}
+        isActiveSpeaker={isLevelBtnVisible}
+        cardLang={langBack}
+      >
         <div
           ref={divRef}
           contentEditable="true"

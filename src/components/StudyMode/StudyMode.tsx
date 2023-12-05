@@ -14,9 +14,11 @@ type Mode = 'BOTH_SIDE' | 'FLIP_SIDE'
 interface Props {
   cards: Card[]
   collectionName: string
+  langFront: string
+  langBack: string
 }
 
-const StudyMode = ({ cards, collectionName }: Props) => {
+const StudyMode = ({ cards, collectionName, langFront, langBack }: Props) => {
   const [mode, setMode] = useState<Mode>('FLIP_SIDE')
   const [currentCard, setCurrentCard] = useState(0)
 
@@ -55,6 +57,8 @@ const StudyMode = ({ cards, collectionName }: Props) => {
             question={cards[currentCard].question}
             answer={cards[currentCard].answer}
             key={cards[currentCard].id}
+            langFront={langFront}
+            langBack={langBack}
           />
         )}
       </div>

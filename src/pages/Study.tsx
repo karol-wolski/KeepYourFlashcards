@@ -7,7 +7,6 @@ import LoaderFullScreen from '../components/LoaderFullScreen/LoaderFullScreen'
 const StudyPage = () => {
   const { id = '' } = useParams()
   const { data: collection, isError, isLoading } = useGetStudyCollection(id)
-
   if (!id || isError) {
     return <Navigate to="/" />
   }
@@ -23,6 +22,8 @@ const StudyPage = () => {
           <StudyMode
             collectionName={collection.name}
             cards={collection.flashcards}
+            langFront={collection.frontLang}
+            langBack={collection.backLang}
           />
         )}
       </div>
