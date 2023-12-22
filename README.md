@@ -75,6 +75,7 @@ npm run build
 - Matching mode
 - Test mode
 - Weekly activity calendar
+- Text to Speech in Repetition and Study mode
 
 ## Screenshots
 
